@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
-import { ContactForm } from "./components/contact-form";
-
-const GOLD = "#F2AD16";
-const GOLD_HOVER = "#FFD46B";
+import Image from "next/image";
+import { SolutionLogos } from "./components/solution-logos";
+import "./responsive.css";
 
 const pillars = [
   {
     number: "01",
     title: "Arquitetura Pessoal",
     subtitle: "Inteligente",
+    image: "/imagens/tese/arquitetura-pessoal.png",
     description:
       "Clareza sobre quem você é, suas escolhas, seus objetivos e o caminho que deseja construir.",
   },
@@ -16,6 +16,7 @@ const pillars = [
     number: "02",
     title: "Arquitetura Relacional",
     subtitle: "Inteligente",
+    image: "/imagens/tese/arquitetura-relacional.png",
     description:
       "Relações mais conscientes, conexões estratégicas e vínculos que favorecem o crescimento.",
   },
@@ -23,6 +24,7 @@ const pillars = [
     number: "03",
     title: "Arquitetura Organizacional",
     subtitle: "Inteligente",
+    image: "/imagens/tese/arquitetura-organizacional.png",
     description:
       "Estratégia, estrutura e alinhamento para desenvolver organizações mais consistentes.",
   },
@@ -30,23 +32,9 @@ const pillars = [
     number: "04",
     title: "Arquitetura de Legado",
     subtitle: "Inteligente",
+    image: "/imagens/tese/arquitetura-legado.png",
     description:
       "Construção de resultados duradouros, propósito e impacto que ultrapassam o presente.",
-  },
-];
-
-const solutions = [
-  {
-    name: "conceo",
-    category: "Consultoria Empresarial",
-    description:
-      "Estratégia e visão de negócio para transformar desafios em possibilidades de crescimento.",
-  },
-  {
-    name: "SafeMind Pro",
-    category: "Gestão de riscos psicossociais",
-    description:
-      "Inteligência aplicada à compreensão e à gestão de riscos psicossociais nas organizações.",
   },
 ];
 
@@ -55,33 +43,38 @@ const services = [
     number: "01",
     title: "Palestras",
     description:
-      "Conhecimento e inspiração para ampliar perspectivas e estimular novas possibilidades.",
+      "Conteúdo autoral para congressos, convenções, empresas e instituições.",
   },
   {
     number: "02",
     title: "Educação corporativa",
     description:
-      "Desenvolvimento de competências, pessoas e equipes para resultados consistentes.",
+      "Treinamentos, workshops, jornadas de conhecimento e formação de lideranças.",
   },
   {
     number: "03",
     title: "Consultoria e mentoria",
     description:
-      "Direcionamento estratégico para decisões mais conscientes e evolução contínua.",
+      "Diagnóstico, direcionamento e desenvolvimento de empresários, líderes e organizações.",
   },
   {
     number: "04",
     title: "Conselho e estratégia",
     description:
-      "Visão integrada para orientar decisões e construir resultados sustentáveis.",
+      "Apoio à tomada de decisão, estruturação empresarial, crescimento e desenvolvimento organizacional.",
   },
 ];
 
-const goldButton =
-  "gold-button inline-flex min-h-11 items-center justify-center gap-3 border border-[#F2AD16] bg-[#F2AD16] px-5 text-[10px] uppercase tracking-[0.1em] transition-colors duration-200 hover:border-[#FFD46B] hover:bg-[#FFD46B] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F2AD16] sm:min-h-12 sm:px-6";
+const socialLinks = [
+  { name: "WhatsApp", image: "/imagens/contato/whatsapp.png", position: "whatsapp" },
+  { name: "Instagram", image: "/imagens/contato/instagram.png", position: "instagram" },
+  { name: "Facebook", image: "/imagens/contato/facebook.png", position: "facebook" },
+  { name: "LinkedIn", image: "/imagens/contato/linkedin.png", position: "linkedin" },
+  { name: "YouTube", image: "/imagens/contato/youtube.png", position: "youtube" },
+];
 
-const goldTextLink =
-  "mt-8 inline-flex items-center gap-3 text-xs font-medium text-[#F2AD16] transition-colors hover:text-[#FFD46B] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F2AD16]";
+const goldButton =
+  "gold-button inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-[#F2AD16] bg-[#F2AD16] px-5 text-[10px] uppercase tracking-[0.1em] transition-colors duration-200 hover:border-[#FFD46B] hover:bg-[#FFD46B] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F2AD16] sm:min-h-12 sm:px-6";
 
 function ArrowUpRight() {
   return (
@@ -213,7 +206,7 @@ export default function Home() {
         />
 
         {/* Conteúdo principal */}
-        <div className="relative mx-auto grid min-h-[inherit] w-full max-w-[1368px] grid-cols-1 items-center px-6 pb-0 pt-9 sm:px-10 sm:pt-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-16 lg:py-0">
+        <div className="hero-main-layout relative mx-auto grid min-h-[inherit] w-full max-w-[1368px] grid-cols-1 items-center px-6 pb-0 pt-9 sm:px-10 sm:pt-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-16 lg:py-0">
           {/* TEXTO */}
           <div className="relative z-20">
             {/* LOGO NO LUGAR DO TÍTULO TEXTUAL */}
@@ -247,7 +240,7 @@ export default function Home() {
           </div>
 
           {/* RETRATO */}
-          <div className="relative mx-auto mt-5 flex h-[min(62svh,500px)] min-h-[310px] w-full max-w-[520px] items-end justify-center sm:mt-7 sm:h-[min(70svh,600px)] sm:min-h-[390px] lg:mt-0 lg:h-[min(84svh,790px)] lg:max-w-none lg:self-end">
+          <div className="hero-portrait relative mx-auto mt-5 flex h-[min(62svh,500px)] min-h-[310px] w-full max-w-[520px] items-end justify-center sm:mt-7 sm:h-[min(70svh,600px)] sm:min-h-[390px] lg:mt-0 lg:h-[min(84svh,790px)] lg:max-w-none lg:self-end">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute bottom-[5%] left-[12%] h-[68%] w-[80%]"
@@ -263,7 +256,7 @@ export default function Home() {
               alt="André Cavalcanti"
               className="relative z-10 block h-full w-full object-contain object-bottom lg:absolute lg:bottom-[1%] lg:right-[-2%] lg:h-[100%] lg:w-[108%]"
               style={{
-                transform: "scale(1.08)",
+                transform: "scale(var(--hero-portrait-scale, 1.08))",
                 transformOrigin: "center bottom",
                 WebkitMaskImage:
                   "radial-gradient(ellipse 76% 84% at 50% 44%, #000 48%, rgba(0,0,0,0.96) 59%, rgba(0,0,0,0.72) 72%, rgba(0,0,0,0.32) 86%, transparent 100%)",
@@ -322,267 +315,219 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOLUÇÕES */}
-      <section
-        id="solucoes"
-        className="border-t border-white/[0.07] bg-[#0d0c0a] px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
-      >
-        <div className="mx-auto max-w-[1240px]">
-          <div className="grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end">
-            <div>
-              <SectionEyebrow>Soluções e conexões</SectionEyebrow>
-              <h2 className="mt-5 text-3xl font-light leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-                Inteligência que se transforma em{" "}
-                <span className="text-[#F2AD16]">possibilidades.</span>
-              </h2>
-            </div>
-
-            <p className="max-w-xl text-sm leading-7 text-white/50 md:justify-self-end">
-              Conheça iniciativas que conectam conhecimento, estratégia e
-              desenvolvimento para responder aos desafios de pessoas e
-              organizações.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {solutions.map((solution, index) => (
-              <article
-                key={solution.name}
-                className="group relative overflow-hidden border border-white/10 bg-[#11100e] p-7 transition duration-300 hover:border-[#F2AD16]/50 sm:p-10"
-              >
-                <div
-                  aria-hidden="true"
-                  className="absolute -right-12 -top-12 h-40 w-40 rounded-full border border-[#F2AD16]/10 transition duration-500 group-hover:scale-125"
-                />
-
-                <span className="text-xs tracking-[0.25em] text-[#F2AD16]">
-                  0{index + 1}
-                </span>
-
-                <h3 className="mt-8 text-3xl font-light text-[#F2AD16]">
-                  {solution.name}
-                </h3>
-
-                <p className="mt-2 text-xs uppercase tracking-[0.15em] text-white/50">
-                  {solution.category}
-                </p>
-
-                <p className="mt-6 max-w-md text-sm leading-7 text-white/60">
-                  {solution.description}
-                </p>
-
-                <a href="#contato" className={goldTextLink}>
-                  Saiba mais <ArrowUpRight />
-                </a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* SEGUNDA DOBRA: MARCAS PARCEIRAS */}
+      <SolutionLogos />
 
       {/* TESE */}
-      <section
-        id="tese"
-        className="border-t border-white/[0.08] bg-[#080808] px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
-      >
-        <div className="mx-auto max-w-[1240px]">
-          <div className="mx-auto max-w-3xl text-center">
-            <SectionEyebrow>A tese</SectionEyebrow>
+      <section id="tese" className="thesis-showcase">
+        <div className="thesis-stage">
+          <img
+            className="thesis-reference-image"
+            src="/imagens/tese/terceira-dobra.png"
+            alt="Crescimento exige arquitetura. TAI - Teoria da Arquitetura Inteligente. Teoria com base em quatro pilares: Arquitetura Pessoal Inteligente, Arquitetura Relacional Inteligente, Arquitetura Organizacional Inteligente e Arquitetura de Legado Inteligente. Diagnóstico, direcionamento, ação e registro."
+          />
+          <img className="thesis-wolf" src="/imagens/lobo.png" alt="" aria-hidden="true" />
+          <img className="thesis-filigree thesis-filigree--left" src="/imagens/solucoes/decoracao-fios.png" alt="" aria-hidden="true" />
+          <img className="thesis-filigree thesis-filigree--right" src="/imagens/solucoes/decoracao-fios.png" alt="" aria-hidden="true" />
 
-            <h2 className="mt-5 text-3xl font-light leading-tight sm:text-4xl lg:text-5xl">
-              Teoria da{" "}
-              <span className="text-[#F2AD16]">
-                Arquitetura Inteligente
-              </span>
-            </h2>
+          <div className="thesis-content">
+            <header className="thesis-heading">
+              <p className="thesis-lead">Crescimento exige arquitetura...</p>
+              <h2 className="thesis-title">TAI - Teoria da Arquitetura Inteligente</h2>
+              <p className="thesis-subtitle">Teoria com base em quatro pilares...</p>
+            </header>
 
-            <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/55">
-              Uma abordagem integrada para compreender, estruturar e
-              transformar pessoas, relações e organizações com consciência,
-              estratégia e propósito.
-            </p>
-          </div>
+            <div className="thesis-grid">
+              {pillars.map((pillar) => {
+                const pillarName = pillar.title.replace("Arquitetura ", "");
 
-          <div className="mt-16 grid gap-5 sm:grid-cols-2">
-            {pillars.map((pillar) => (
-              <article
-                key={pillar.number}
-                className="group relative border border-[#F2AD16]/30 p-7 transition duration-300 hover:border-[#F2AD16] sm:p-9"
-              >
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-1 border border-[#F2AD16]/10 transition group-hover:border-[#F2AD16]/30"
-                />
+                return (
+                  <article key={pillar.number} className="thesis-card">
+                    <img className="thesis-card__logo" src={pillar.image} alt="" />
+                    <h3 className="thesis-card__title">
+                      <span>Arquitetura</span>
+                      <span className="thesis-card__highlight">{pillarName}</span>
+                      <span>Inteligente</span>
+                    </h3>
+                  </article>
+                );
+              })}
+            </div>
 
-                <div className="relative">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm tracking-[0.2em] text-[#F2AD16]">
-                      {pillar.number}
-                    </span>
-                    <span className="text-2xl font-light text-[#F2AD16]/70">
-                      ✳
-                    </span>
-                  </div>
-
-                  <h3 className="mt-8 text-2xl font-light leading-snug sm:text-3xl">
-                    {pillar.title}
-                  </h3>
-
-                  <p className="mt-1 text-sm tracking-[0.15em] text-[#F2AD16]">
-                    {pillar.subtitle}
-                  </p>
-
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/55">
-                    {pillar.description}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-[10px] uppercase tracking-[0.15em] text-[#F2AD16] sm:gap-5 sm:text-xs">
-            <span>Diagnóstico</span>
-            <span aria-hidden="true">»</span>
-            <span>Direcionamento</span>
-            <span aria-hidden="true">»</span>
-            <span>Ação</span>
-            <span aria-hidden="true">»</span>
-            <span>Registro</span>
+            <div className="thesis-process" aria-label="Diagnóstico, direcionamento, ação e registro">
+              <span>Diagnóstico</span>
+              <span aria-hidden="true">»</span>
+              <span>Direcionamento</span>
+              <span aria-hidden="true">»</span>
+              <span>Ação</span>
+              <span aria-hidden="true">»</span>
+              <span>Registro</span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* SOBRE */}
-      <section
-        id="sobre"
-        className="border-t border-white/[0.08] bg-[#0d0c0a] px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
-      >
-        <div className="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <div className="relative flex min-h-[340px] items-center justify-center border border-[#F2AD16]/20 bg-[#080808] p-8 sm:min-h-[440px]">
-            <div
-              aria-hidden="true"
-              className="absolute inset-5 border border-[#F2AD16]/15"
+      <section id="sobre" className="about-showcase" aria-label="Quem sou eu">
+        <Image
+          className="about-reference-image"
+          src="/imagens/sobre/quarta-dobra-hd.png"
+          alt="André Cavalcanti apresenta sua atuação em palestras, educação corporativa, consultoria e mentoria, conselho e estratégia."
+          width={5760}
+          height={3240}
+          sizes="(max-width: 1400px) 100vw, 1400px"
+          unoptimized
+        />
+
+        <div className="about-mobile">
+          <div className="about-mobile__profile">
+            <Image
+              src="/imagens/img02.png"
+              alt="André Cavalcanti sentado em uma poltrona azul."
+              width={1101}
+              height={1429}
+              className="about-mobile__portrait"
+              sizes="(max-width: 767px) 100vw, 0px"
             />
-
-            <div className="relative text-center">
-              <span className="text-xs uppercase tracking-[0.3em] text-[#F2AD16]">
-                Estratégia · Propósito · Legado
-              </span>
-
-              <div className="my-7 text-6xl font-light tracking-[0.15em] text-[#F2AD16]">
-                AC
-              </div>
-
-              <p className="text-sm tracking-[0.2em] text-white/70">
-                ANDRÉ CAVALCANTI
-              </p>
-            </div>
+            <p className="about-mobile__name">André Cavalcanti</p>
           </div>
 
-          <div>
-            <SectionEyebrow>Quem sou eu</SectionEyebrow>
-
-            <h2 className="mt-5 text-4xl font-light leading-tight sm:text-5xl">
-              Construir com{" "}
-              <span className="text-[#F2AD16]">intenção.</span>
-              <br />
-              Transformar com{" "}
-              <span className="text-[#F2AD16]">inteligência.</span>
-            </h2>
-
-            <p className="mt-7 text-sm leading-8 text-white/60">
-              Uma atuação dedicada ao desenvolvimento humano e organizacional,
-              conectando estratégia, conhecimento e ação para transformar
-              desafios em construções consistentes.
+          <div className="about-mobile__bio">
+            <p className="about-mobile__eyebrow">Quem sou eu</p>
+            <h2>Estratégia, educação e gestão para transformar organizações.</h2>
+            <p>
+              <strong>MSc. André Cavalcanti</strong> é empreendedor, educador,
+              conselheiro, palestrante internacional e autor. Mestre em Ciências
+              da Educação, especialista em Didática e Metodologia do Ensino
+              Superior, bacharel em Administração, pedagogo, tecnólogo e técnico
+              em Segurança do Trabalho.
             </p>
-
-            <p className="mt-4 text-sm leading-8 text-white/60">
-              A Teoria da Arquitetura Inteligente integra diferentes dimensões
-              da vida e dos negócios para apoiar decisões mais conscientes,
-              relações mais fortes e resultados sustentáveis.
+            <p>
+              Atua na concepção, implantação e condução de projetos empresariais,
+              educacionais e tecnológicos; em palestras e programas de
+              desenvolvimento de líderes; e em consultoria voltada a planejamento
+              estratégico, diagnóstico organizacional, gestão de processos,
+              riscos ocupacionais e psicossociais, cultura, comunicação e inovação.
             </p>
-
-            {/* BOTÃO VAMOS CONVERSAR */}
-            <a
-              href="#contato"
-              className={`${goldButton} mt-8`}
-            >
-              <span className="gold-button__label">VAMOS CONVERSAR</span>
-              <ArrowUpRight />
-            </a>
           </div>
-        </div>
 
-        <div className="mx-auto mt-20 grid max-w-[1240px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => (
-            <article
-              key={service.number}
-              className="border border-white/10 p-6 transition-colors hover:border-[#F2AD16]/50"
-            >
-              <span className="text-xs tracking-[0.2em] text-[#F2AD16]">
-                {service.number}
-              </span>
-
-              <h3 className="mt-6 text-lg font-light">{service.title}</h3>
-
-              <p className="mt-3 text-sm leading-6 text-white/50">
-                {service.description}
-              </p>
-            </article>
-          ))}
+          <div className="about-mobile__services">
+            {services.map((service) => (
+              <article key={service.number} className="about-mobile__card">
+                <span>{service.number}</span>
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CONTATO */}
-      <section
-        id="contato"
-        className="relative isolate overflow-hidden border-t border-white/[0.08] bg-[#080808] px-6 py-24 sm:px-10 lg:px-16 lg:py-32"
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse at 50% 100%, rgba(242,173,22,0.13), transparent 60%)",
-          }}
-        />
+      <section id="contato" className="contact-showcase" aria-label="Vamos conversar">
+        <div className="contact-artboard">
+          <Image
+            className="contact-filigree"
+            src="/imagens/solucoes/decoracao-fios.png"
+            alt=""
+            aria-hidden="true"
+            width={1200}
+            height={1200}
+          />
+          <Image
+            className="contact-wolf"
+            src="/imagens/contato/lobo-pdf.png"
+            alt=""
+            aria-hidden="true"
+            width={1104}
+            height={1280}
+          />
+          <Image
+            className="contact-copy-art"
+            src="/imagens/contato/texto-pdf.png"
+            alt="Qual construção precisa começar. Projetos diferentes exigem soluções diferentes. O primeiro passo é compreender onde você está, onde pretende chegar e o que precisa ser construído entre esses dois pontos. Vamos conversar?"
+            width={710}
+            height={240}
+          />
+          <Image
+            className="contact-brand-art"
+            src="/imagens/contato/logo-andre-pdf.png"
+            alt="André Cavalcanti"
+            width={533}
+            height={267}
+          />
+          <Image
+            className="contact-icons-art"
+            src="/imagens/contato/icones-pdf.png"
+            alt=""
+            aria-hidden="true"
+            width={1338}
+            height={753}
+          />
 
-        <div className="mx-auto max-w-4xl text-center">
-          <SectionEyebrow>O próximo passo começa aqui</SectionEyebrow>
+          <nav className="contact-social-hotspots" aria-label="Redes sociais">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href="#"
+                aria-label={social.name}
+                className={`contact-social-hotspot contact-social-hotspot--${social.position}`}
+              />
+            ))}
+          </nav>
 
-          <h2 className="mt-6 text-4xl font-light leading-tight sm:text-5xl lg:text-6xl">
-            Qual construção
-            <br />
-            precisa <span className="text-[#F2AD16]">começar?</span>
-          </h2>
-
-          <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-white/55 sm:text-base sm:leading-8">
-            Toda transformação começa com uma conversa, uma visão e a decisão
-            de construir novos caminhos.
-          </p>
-
-          <ContactForm />
+          <div className="contact-legal contact-legal--desktop">
+            <p>@2026 André Cavalcanti. Todos os direitos reservados</p>
+            <p>Desnvolvido por Blend Creative Design Studio.</p>
+          </div>
         </div>
 
-        <footer className="mx-auto mt-20 flex max-w-[1240px] flex-col items-center justify-between gap-5 border-t border-white/10 pt-7 text-center sm:flex-row sm:text-left">
-          <a
-            href="#inicio"
-            className="text-xs tracking-[0.2em] text-[#F2AD16]"
-          >
-            ESTRATÉGIA INTELIGENTE
-          </a>
+        <div className="contact-mobile">
+          <Image
+            className="contact-mobile__wolf"
+            src="/imagens/lobo.png"
+            alt=""
+            width={1000}
+            height={1200}
+            aria-hidden="true"
+          />
 
-          <p className="text-xs text-white/35">
-            Estratégia, desenvolvimento e inteligência.
-          </p>
+          <div className="contact-mobile__copy">
+            <h2>Qual construção precisa começar</h2>
+            <p className="contact-mobile__lead">
+              Projetos diferentes exigem soluções diferentes.
+            </p>
+            <p>
+              O primeiro passo é compreender onde você está, onde pretende
+              chegar e o que precisa ser construído entre esses dois pontos.
+            </p>
+            <h3>Vamos conversar?</h3>
+          </div>
 
-          <a
-            href="#inicio"
-            className="text-xs text-[#F2AD16] transition-colors hover:text-[#FFD46B]"
-          >
-            Voltar ao início ↑
-          </a>
-        </footer>
+          <nav className="contact-mobile__socials" aria-label="Redes sociais">
+            {socialLinks.map((social) => (
+                <a key={social.name} href="#" aria-label={social.name}>
+                <Image src={social.image} alt="" width={600} height={600} />
+              </a>
+            ))}
+          </nav>
+
+          <footer className="contact-mobile__footer">
+            <Image
+              src="/imagens/contato/logo-andre-pdf.png"
+              alt="André Cavalcanti"
+              width={533}
+              height={267}
+              className="contact-mobile__logo"
+            />
+            <div className="contact-legal">
+              <p>@2026 André Cavalcanti. Todos os direitos reservados</p>
+              <p>Desnvolvido por Blend Creative Design Studio.</p>
+            </div>
+          </footer>
+        </div>
       </section>
     </main>
   );

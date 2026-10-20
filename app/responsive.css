@@ -1,0 +1,182 @@
+/* Ajustes para telas menores que 768 px. */
+.solutions-carousel {
+  display: none;
+}
+
+@keyframes solutions-carousel-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 767px) {
+  #inicio {
+    min-height: 0;
+  }
+
+  #inicio .hero-main-layout {
+    min-height: 0;
+    align-items: start;
+    row-gap: 0;
+  }
+
+  #inicio .hero-portrait {
+    --hero-portrait-scale: 1;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1347 / 1168;
+    margin-top: 16px;
+  }
+
+  #solucoes {
+    min-height: 0;
+  }
+
+  #solucoes .solutions-stage {
+    display: grid;
+    align-items: center;
+    min-height: clamp(280px, 50svh, 420px);
+    padding: 64px 0;
+  }
+
+  #solucoes .solutions-brands {
+    display: none;
+  }
+
+  .solutions-carousel {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .solutions-carousel__row {
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .solutions-carousel__track {
+    display: flex;
+    width: max-content;
+    animation: solutions-carousel-scroll 24s linear infinite;
+  }
+
+  .solutions-carousel__track--reverse {
+    animation-direction: reverse;
+  }
+
+  .solutions-carousel__group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  #solucoes .solutions-carousel .solutions-brand {
+    position: relative;
+    inset: auto;
+    flex: 0 0 clamp(128px, 36vw, 160px);
+    width: clamp(128px, 36vw, 160px);
+    height: 132px;
+    padding: 10px;
+  }
+
+  .solutions-carousel:has(.solutions-brand:hover) .solutions-carousel__track,
+  .solutions-carousel:focus-within .solutions-carousel__track {
+    animation-play-state: paused;
+  }
+
+  #sobre .about-mobile__profile {
+    min-height: 0;
+    aspect-ratio: 1101 / 1429;
+  }
+
+  #sobre .about-mobile__portrait {
+    object-fit: cover;
+  }
+
+  #contato .contact-mobile {
+    min-height: 0;
+    justify-content: flex-start;
+    padding: 42px 24px 28px;
+  }
+
+  #contato .contact-mobile__copy {
+    max-width: 100%;
+    transform: none;
+  }
+
+  #contato .contact-mobile__socials {
+    transform: none;
+  }
+
+  #contato .contact-mobile__wolf {
+    top: 24px;
+    right: auto;
+    left: 50%;
+    width: min(110%, 480px);
+    height: auto;
+    opacity: 0.16;
+    transform: translateX(-50%);
+    -webkit-mask-image: radial-gradient(ellipse, #000 45%, transparent 76%);
+    mask-image: radial-gradient(ellipse, #000 45%, transparent 76%);
+  }
+
+  #contato .contact-mobile__footer {
+    margin-top: 36px;
+    padding-top: 0;
+    transform: none;
+  }
+}
+
+/* Mantém a abertura compacta em notebooks com tela mais alta. */
+@media (min-width: 1280px) and (max-width: 1600px) and (min-height: 900px) {
+  #inicio,
+  #inicio .hero-main-layout {
+    min-height: 0;
+  }
+
+  #inicio .hero-portrait {
+    height: min(72svh, 660px);
+    min-height: 0;
+  }
+}
+
+/* A tela alta do tablet não deve alongar a órbita das marcas. */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
+  #solucoes .solutions-brand {
+    left: 0;
+    top: 0;
+    height: 17vw;
+    offset-path: circle(31vw at 50% 50%);
+    offset-anchor: center;
+    offset-rotate: 0deg;
+    offset-distance: var(--orbit-start);
+  }
+
+  #solucoes .brand-gesst { --orbit-start: 65%; }
+  #solucoes .brand-aetech { --orbit-start: 75%; }
+  #solucoes .brand-aurora { --orbit-start: 85%; }
+  #solucoes .brand-efetiva { --orbit-start: 55%; }
+  #solucoes .brand-apta { --orbit-start: 95%; }
+  #solucoes .brand-conceo { --orbit-start: 45%; }
+  #solucoes .brand-aoris { --orbit-start: 5%; }
+  #solucoes .brand-educa { --orbit-start: 35%; }
+  #solucoes .brand-safemind { --orbit-start: 25%; }
+  #solucoes .brand-lexsst { --orbit-start: 15%; }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .solutions-carousel__row {
+    overflow-x: auto;
+  }
+
+  .solutions-carousel__track {
+    animation: none;
+  }
+
+  .solutions-carousel__group[aria-hidden="true"] {
+    display: none;
+  }
+}
