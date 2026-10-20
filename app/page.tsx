@@ -1,7 +1,11 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { SolutionLogos } from "./components/solution-logos";
+import { PageMotion } from "./components/page-motion";
+import { PageLoader } from "./components/page-loader";
 import "./responsive.css";
+import "./motion.css";
+import "./loading-screen.css";
 
 const pillars = [
   {
@@ -107,6 +111,8 @@ function SectionEyebrow({ children }: { children: ReactNode }) {
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#080808] text-[#f5f2eb]">
+      <PageLoader />
+      <PageMotion />
       {/* CABEÇALHO */}
       <header translate="no" className="relative z-30 bg-[#080808]">
         <nav
@@ -210,7 +216,7 @@ export default function Home() {
           {/* TEXTO */}
           <div className="relative z-20">
             {/* LOGO NO LUGAR DO TÍTULO TEXTUAL */}
-            <div className="mb-6">
+            <div className="mb-6" data-motion="reveal">
               <img
                 src="/imagens/logo_andre.png"
                 alt="André Cavalcanti"
@@ -219,7 +225,7 @@ export default function Home() {
             </div>
 
             {/* SUBTÍTULO COM DESTAQUE DOURADO */}
-            <h2 className="max-w-3xl text-xl font-medium leading-snug text-white sm:text-2xl lg:text-3xl">
+            <h2 data-motion="reveal" data-motion-delay="80" className="max-w-3xl text-xl font-medium leading-snug text-white sm:text-2xl lg:text-3xl">
               Estratégia, desenvolvimento e inteligência
               <br />
               aplicada a{" "}
@@ -230,7 +236,7 @@ export default function Home() {
               pessoais e empresariais.
             </h2>
 
-            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">
+            <p data-motion="reveal" data-motion-delay="160" className="mt-5 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">
               Ajudo empresários, líderes e organizações a transformar
               <br className="hidden lg:block" />
               conhecimento em decisão, intenção em construção e
@@ -240,7 +246,7 @@ export default function Home() {
           </div>
 
           {/* RETRATO */}
-          <div className="hero-portrait relative mx-auto mt-5 flex h-[min(62svh,500px)] min-h-[310px] w-full max-w-[520px] items-end justify-center sm:mt-7 sm:h-[min(70svh,600px)] sm:min-h-[390px] lg:mt-0 lg:h-[min(84svh,790px)] lg:max-w-none lg:self-end">
+          <div data-motion="portrait" data-motion-delay="120" className="hero-portrait relative mx-auto mt-5 flex h-[min(62svh,500px)] min-h-[310px] w-full max-w-[520px] items-end justify-center sm:mt-7 sm:h-[min(70svh,600px)] sm:min-h-[390px] lg:mt-0 lg:h-[min(84svh,790px)] lg:max-w-none lg:self-end">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute bottom-[5%] left-[12%] h-[68%] w-[80%]"
@@ -323,6 +329,7 @@ export default function Home() {
         <div className="thesis-stage">
           <img
             className="thesis-reference-image"
+            data-motion="reveal"
             src="/imagens/tese/terceira-dobra.png"
             alt="Crescimento exige arquitetura. TAI - Teoria da Arquitetura Inteligente. Teoria com base em quatro pilares: Arquitetura Pessoal Inteligente, Arquitetura Relacional Inteligente, Arquitetura Organizacional Inteligente e Arquitetura de Legado Inteligente. Diagnóstico, direcionamento, ação e registro."
           />
@@ -332,9 +339,9 @@ export default function Home() {
 
           <div className="thesis-content">
             <header className="thesis-heading">
-              <p className="thesis-lead">Crescimento exige arquitetura...</p>
-              <h2 className="thesis-title">TAI - Teoria da Arquitetura Inteligente</h2>
-              <p className="thesis-subtitle">Teoria com base em quatro pilares...</p>
+              <p className="thesis-lead" data-motion="reveal">Crescimento exige arquitetura...</p>
+              <h2 className="thesis-title" data-motion="reveal" data-motion-delay="80">TAI - Teoria da Arquitetura Inteligente</h2>
+              <p className="thesis-subtitle" data-motion="reveal" data-motion-delay="160">Teoria com base em quatro pilares...</p>
             </header>
 
             <div className="thesis-grid">
@@ -342,7 +349,7 @@ export default function Home() {
                 const pillarName = pillar.title.replace("Arquitetura ", "");
 
                 return (
-                  <article key={pillar.number} className="thesis-card">
+                  <article key={pillar.number} className="thesis-card" data-motion="reveal" data-motion-delay={(Number(pillar.number) - 1) * 70}>
                     <img className="thesis-card__logo" src={pillar.image} alt="" />
                     <h3 className="thesis-card__title">
                       <span>Arquitetura</span>
@@ -354,7 +361,7 @@ export default function Home() {
               })}
             </div>
 
-            <div className="thesis-process" aria-label="Diagnóstico, direcionamento, ação e registro">
+            <div className="thesis-process" data-motion="reveal" aria-label="Diagnóstico, direcionamento, ação e registro">
               <span>Diagnóstico</span>
               <span aria-hidden="true">»</span>
               <span>Direcionamento</span>
@@ -371,6 +378,7 @@ export default function Home() {
       <section id="sobre" className="about-showcase" aria-label="Quem sou eu">
         <Image
           className="about-reference-image"
+          data-motion="reveal"
           src="/imagens/sobre/quarta-dobra-hd.png"
           alt="André Cavalcanti apresenta sua atuação em palestras, educação corporativa, consultoria e mentoria, conselho e estratégia."
           width={5760}
@@ -380,7 +388,7 @@ export default function Home() {
         />
 
         <div className="about-mobile">
-          <div className="about-mobile__profile">
+          <div className="about-mobile__profile" data-motion="portrait">
             <Image
               src="/imagens/img02.png"
               alt="André Cavalcanti sentado em uma poltrona azul."
@@ -392,7 +400,7 @@ export default function Home() {
             <p className="about-mobile__name">André Cavalcanti</p>
           </div>
 
-          <div className="about-mobile__bio">
+          <div className="about-mobile__bio" data-motion="reveal">
             <p className="about-mobile__eyebrow">Quem sou eu</p>
             <h2>Estratégia, educação e gestão para transformar organizações.</h2>
             <p>
@@ -413,7 +421,7 @@ export default function Home() {
 
           <div className="about-mobile__services">
             {services.map((service) => (
-              <article key={service.number} className="about-mobile__card">
+              <article key={service.number} className="about-mobile__card" data-motion="reveal" data-motion-delay={(Number(service.number) - 1) * 70}>
                 <span>{service.number}</span>
                 <div>
                   <h3>{service.title}</h3>
@@ -446,6 +454,7 @@ export default function Home() {
           />
           <Image
             className="contact-copy-art"
+            data-motion="reveal"
             src="/imagens/contato/texto-pdf.png"
             alt="Qual construção precisa começar. Projetos diferentes exigem soluções diferentes. O primeiro passo é compreender onde você está, onde pretende chegar e o que precisa ser construído entre esses dois pontos. Vamos conversar?"
             width={710}
@@ -453,6 +462,8 @@ export default function Home() {
           />
           <Image
             className="contact-brand-art"
+            data-motion="reveal"
+            data-motion-delay="160"
             src="/imagens/contato/logo-andre-pdf.png"
             alt="André Cavalcanti"
             width={533}
@@ -460,6 +471,8 @@ export default function Home() {
           />
           <Image
             className="contact-icons-art"
+            data-motion="reveal"
+            data-motion-delay="80"
             src="/imagens/contato/icones-pdf.png"
             alt=""
             aria-hidden="true"
@@ -478,7 +491,7 @@ export default function Home() {
             ))}
           </nav>
 
-          <div className="contact-legal contact-legal--desktop">
+          <div className="contact-legal contact-legal--desktop" data-motion="reveal" data-motion-delay="160">
             <p>@2026 André Cavalcanti. Todos os direitos reservados</p>
             <p>Desnvolvido por Blend Creative Design Studio.</p>
           </div>
@@ -495,18 +508,18 @@ export default function Home() {
           />
 
           <div className="contact-mobile__copy">
-            <h2>Qual construção precisa começar</h2>
-            <p className="contact-mobile__lead">
+            <h2 data-motion="reveal">Qual construção precisa começar</h2>
+            <p className="contact-mobile__lead" data-motion="reveal" data-motion-delay="80">
               Projetos diferentes exigem soluções diferentes.
             </p>
-            <p>
+            <p data-motion="reveal" data-motion-delay="160">
               O primeiro passo é compreender onde você está, onde pretende
               chegar e o que precisa ser construído entre esses dois pontos.
             </p>
-            <h3>Vamos conversar?</h3>
+            <h3 data-motion="reveal">Vamos conversar?</h3>
           </div>
 
-          <nav className="contact-mobile__socials" aria-label="Redes sociais">
+          <nav className="contact-mobile__socials" data-motion="reveal" data-motion-delay="80" aria-label="Redes sociais">
             {socialLinks.map((social) => (
                 <a key={social.name} href="#" aria-label={social.name}>
                 <Image src={social.image} alt="" width={600} height={600} />
@@ -514,7 +527,7 @@ export default function Home() {
             ))}
           </nav>
 
-          <footer className="contact-mobile__footer">
+          <footer className="contact-mobile__footer" data-motion="reveal" data-motion-delay="160">
             <Image
               src="/imagens/contato/logo-andre-pdf.png"
               alt="André Cavalcanti"
