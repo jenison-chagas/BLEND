@@ -1,26 +1,288 @@
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #f5f2eb;
+
+  --gold: #f2ad16;
+  --gold-light: #ffd46b;
+  --gold-dark: #a87916;
+
+  --font-body: Arial, Helvetica, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  background: var(--background);
 }
 
 body {
+  margin: 0;
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  color: #050505;
+  background: var(--gold);
+}
+
+/* =========================================
+   CARROSSEL INFERIOR DO HERO
+   Linha superior com máscara em degradê
+   Máscaras laterais das palavras preservadas
+   ========================================= */
+
+.hero-marquee {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  background: #080808;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.hero-marquee__viewport {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding: 18px 0;
+  background-color: #080808;
+
+  /* Remove bordas convencionais */
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+
+  /* Linha superior com desaparecimento nas extremidades */
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 169, 106, 0.08) 10%,
+    rgba(201, 169, 106, 0.3) 30%,
+    rgba(201, 169, 106, 0.3) 70%,
+    rgba(201, 169, 106, 0.08) 90%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: top left;
+}
+
+/* Faixa animada */
+.hero-marquee__track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: hero-marquee-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+/* Grupos de palavras */
+.hero-marquee__group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 28px;
+  padding-right: 28px;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-marquee__separator {
+  flex: 0 0 auto;
+  color: #c9a96a;
+}
+
+/* Máscara lateral esquerda */
+.hero-marquee__viewport::before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 1px;
+  bottom: 0;
+  left: 0;
+  width: 34%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to right,
+    #080808 0%,
+    #080808 45%,
+    rgba(8, 8, 8, 0.98) 58%,
+    rgba(8, 8, 8, 0.85) 70%,
+    rgba(8, 8, 8, 0.48) 84%,
+    rgba(8, 8, 8, 0.15) 94%,
+    transparent 100%
+  );
+}
+
+/* Máscara lateral direita */
+.hero-marquee__viewport::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 1px;
+  right: 0;
+  bottom: 0;
+  width: 34%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to left,
+    #080808 0%,
+    #080808 45%,
+    rgba(8, 8, 8, 0.98) 58%,
+    rgba(8, 8, 8, 0.85) 70%,
+    rgba(8, 8, 8, 0.48) 84%,
+    rgba(8, 8, 8, 0.15) 94%,
+    transparent 100%
+  );
+}
+
+/* Animação contínua */
+@keyframes hero-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+/* =========================================
+   IMAGEM HERO — LOBO E TRANSPARÊNCIA
+   ========================================= */
+
+.hero-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: transparent;
+}
+
+.hero-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+
+  transform: scale(1.35);
+  transform-origin: center center;
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 38%,
+    rgba(0, 0, 0, 0.95) 52%,
+    rgba(0, 0, 0, 0.65) 68%,
+    rgba(0, 0, 0, 0.25) 82%,
+    transparent 100%
+  );
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 38%,
+    rgba(0, 0, 0, 0.95) 52%,
+    rgba(0, 0, 0, 0.65) 68%,
+    rgba(0, 0, 0, 0.25) 82%,
+    transparent 100%
+  );
+}
+
+/* Responsividade */
+@media (max-width: 639px) {
+  .hero-marquee__viewport {
+    padding: 14px 0;
+    background-size: 100% 1px;
+  }
+
+  .hero-marquee__viewport::before,
+  .hero-marquee__viewport::after {
+    width: 22%;
+  }
+
+  .hero-marquee__group {
+    gap: 18px;
+    padding-right: 18px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Acessibilidade: movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee__track {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* DEMAIS BOTÕES DOURADOS — TEXTO PRETO E EM NEGRITO */
+a:not(.hero-primary-button).bg-\[\#F2AD16\],
+a:not(.hero-primary-button).bg-\[\#F2AD16\]:link,
+a:not(.hero-primary-button).bg-\[\#F2AD16\]:visited,
+a:not(.hero-primary-button).bg-\[\#F2AD16\]:hover,
+a:not(.hero-primary-button).bg-\[\#F2AD16\] span {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-text-stroke: 0.2px #000000;
+  text-shadow: none !important;
+}
+
+a:not(.hero-primary-button).bg-\[\#F2AD16\] svg,
+a:not(.hero-primary-button).bg-\[\#F2AD16\] svg path {
+  color: #000000 !important;
+  stroke: #000000 !important;
 }
