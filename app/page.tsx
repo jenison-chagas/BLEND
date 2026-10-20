@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ContactForm } from "./components/contact-form";
 
 const GOLD = "#F2AD16";
 const GOLD_HOVER = "#FFD46B";
@@ -560,14 +561,7 @@ export default function Home() {
             de construir novos caminhos.
           </p>
 
-          {/* BOTÃO VAMOS CONVERSAR — CONTATO */}
-          <a
-            href="mailto:contato@estrategiainteligente.com.br"
-            className={`${goldButton} mt-9`}
-          >
-            <span className="gold-button__label">VAMOS CONVERSAR</span>
-            <ArrowUpRight />
-          </a>
+          <ContactForm />
         </div>
 
         <footer className="mx-auto mt-20 flex max-w-[1240px] flex-col items-center justify-between gap-5 border-t border-white/10 pt-7 text-center sm:flex-row sm:text-left">
