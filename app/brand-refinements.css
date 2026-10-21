@@ -1,0 +1,170 @@
+@font-face {
+  font-family: "Against";
+  src: url("/fonts/against-regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+#inicio .hero-description {
+  display: block;
+  visibility: visible;
+  max-width: 100%;
+  text-wrap: pretty;
+}
+
+.solutions-brand .brand-artwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  flex: 0 1 auto;
+}
+
+.thesis-process {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.thesis-process > span {
+  flex: 0 0 auto;
+}
+
+.about-desktop {
+  position: relative;
+  width: min(100%, 1400px);
+  margin-inline: auto;
+  container-type: inline-size;
+}
+
+.about-desktop__name {
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  background: #000;
+  pointer-events: none;
+}
+
+.about-name__word {
+  font-family: "Against", Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  background: linear-gradient(110deg, #d49b25, #f4cb62 48%, #d99e24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.about-desktop__name--first {
+  top: 4.5%;
+  left: 8.2%;
+  width: 29.5%;
+  height: 13%;
+  align-items: flex-start;
+  font-size: 7cqw;
+}
+
+.about-desktop__name--last {
+  top: 85.8%;
+  left: 36.2%;
+  width: 33.4%;
+  height: 11%;
+  align-items: flex-end;
+  font-size: 5.2cqw;
+}
+
+@media (max-width: 767px) {
+  .thesis-process {
+    width: 100%;
+    max-width: none;
+    gap: clamp(3px, 1vw, 8px);
+    font-size: clamp(8px, 2.25vw, 11px);
+    letter-spacing: 0.02em;
+  }
+
+  .about-desktop {
+    display: none;
+  }
+
+  #sobre .about-mobile__profile {
+    container-type: inline-size;
+  }
+
+  #sobre .about-mobile__name {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    pointer-events: none;
+  }
+
+  .about-mobile__name--first {
+    position: absolute;
+    top: 5%;
+    right: 4%;
+    width: 54%;
+    font-size: 14cqw;
+    text-align: right;
+  }
+
+  .about-mobile__name--last {
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+    width: 94%;
+    font-size: 14.75cqw;
+    text-align: center;
+  }
+}
+
+/* Explicit lines share one font size, fitted to the longest line. */
+.desktop-lines,
+.desktop-lines__content,
+.desktop-lines__line {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.desktop-lines__line {
+  white-space: nowrap;
+}
+
+.desktop-lines__line > span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Keep the card highlight inside the approved three-line title. */
+.thesis-card__title .desktop-lines__line {
+  display: block;
+}
+
+.about-mobile__card > div {
+  min-width: 0;
+  flex: 1;
+}
+
+/* Give the fit calculation the full available text column. */
+.desktop-lines {
+  width: 100%;
+}
+
+/* Keep the original frame continuous above the name replacement layers. */
+.about-desktop__frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

@@ -1,11 +1,13 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
+import { DesktopLines } from "./components/desktop-lines";
 import { SolutionLogos } from "./components/solution-logos";
 import { PageMotion } from "./components/page-motion";
 import { PageLoader } from "./components/page-loader";
 import "./responsive.css";
 import "./motion.css";
 import "./loading-screen.css";
+import "./brand-refinements.css";
 
 const pillars = [
   {
@@ -44,29 +46,54 @@ const pillars = [
 
 const services = [
   {
-    number: "01",
-    title: "Palestras",
-    description:
-      "Conteúdo autoral para congressos, convenções, empresas e instituições.",
+    "number": "01",
+    "titleLines": [
+      "Palestras"
+    ],
+    "descriptionLines": [
+      "Conteúdo autoral para",
+      "congressos, convenções,",
+      "empresas e instituições."
+    ]
   },
   {
-    number: "02",
-    title: "Educação corporativa",
-    description:
-      "Treinamentos, workshops, jornadas de conhecimento e formação de lideranças.",
+    "number": "02",
+    "titleLines": [
+      "Educação",
+      "corporativa"
+    ],
+    "descriptionLines": [
+      "Treinamentos, workshops,",
+      "jornadas de conhecimento e",
+      "formação de lideranças."
+    ]
   },
   {
-    number: "03",
-    title: "Consultoria e mentoria",
-    description:
-      "Diagnóstico, direcionamento e desenvolvimento de empresários, líderes e organizações.",
+    "number": "03",
+    "titleLines": [
+      "Consultoria",
+      "e mentoria"
+    ],
+    "descriptionLines": [
+      "Diagnóstico, direcionamento",
+      "e desenvolvimento de",
+      "empresários, líderes e",
+      "organizações."
+    ]
   },
   {
-    number: "04",
-    title: "Conselho e estratégia",
-    description:
-      "Apoio à tomada de decisão, estruturação empresarial, crescimento e desenvolvimento organizacional.",
-  },
+    "number": "04",
+    "titleLines": [
+      "Conselho",
+      "e estratégia"
+    ],
+    "descriptionLines": [
+      "Apoio à tomada de decisão,",
+      "estruturação empresarial,",
+      "crescimento e desenvolvimento",
+      "organizacional."
+    ]
+  }
 ];
 
 const socialLinks = [
@@ -214,7 +241,7 @@ export default function Home() {
         {/* Conteúdo principal */}
         <div className="hero-main-layout relative mx-auto grid min-h-[inherit] w-full max-w-[1368px] grid-cols-1 items-center px-6 pb-0 pt-9 sm:px-10 sm:pt-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-16 lg:py-0">
           {/* TEXTO */}
-          <div className="relative z-20">
+          <div className="hero-copy relative z-20">
             {/* LOGO NO LUGAR DO TÍTULO TEXTUAL */}
             <div className="mb-6" data-motion="reveal">
               <img
@@ -226,22 +253,22 @@ export default function Home() {
 
             {/* SUBTÍTULO COM DESTAQUE DOURADO */}
             <h2 data-motion="reveal" data-motion-delay="80" className="max-w-3xl text-xl font-medium leading-snug text-white sm:text-2xl lg:text-3xl">
-              Estratégia, desenvolvimento e inteligência
-              <br />
-              aplicada a{" "}
-              <span className="font-semibold text-[#F2AD16]">
-                otimização de resultados
-              </span>
-              <br />
-              pessoais e empresariais.
+              <DesktopLines lines={[
+                "Estratégia, desenvolvimento e inteligência",
+                <Fragment key="hero-desktop-results">aplicada a <span className="font-semibold text-[#F2AD16]">otimização de resultados</span></Fragment>,
+                "pessoais e empresariais.",
+              ]} mobileLines={[
+                "Estratégia, desenvolvimento e inteligência aplicada a",
+                <Fragment key="hero-mobile-results"><span className="font-semibold text-[#F2AD16]">otimização de resultados</span> pessoais e empresariais.</Fragment>,
+              ]} />
             </h2>
 
-            <p data-motion="reveal" data-motion-delay="160" className="mt-5 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">
-              Ajudo empresários, líderes e organizações a transformar
-              <br className="hidden lg:block" />
-              conhecimento em decisão, intenção em construção e
-              <br className="hidden lg:block" />
-              potencial em resultados sustentáveis.
+            <p className="hero-description mt-5 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">
+              <DesktopLines lines={[
+                "Ajudo empresários, líderes e organizações a transformar",
+                "conhecimento em decisão, intenção em construção",
+                "e potencial em resultados sustentáveis.",
+              ]} />
             </p>
           </div>
 
@@ -339,9 +366,9 @@ export default function Home() {
 
           <div className="thesis-content">
             <header className="thesis-heading">
-              <p className="thesis-lead" data-motion="reveal">Crescimento exige arquitetura...</p>
-              <h2 className="thesis-title" data-motion="reveal" data-motion-delay="80">TAI - Teoria da Arquitetura Inteligente</h2>
-              <p className="thesis-subtitle" data-motion="reveal" data-motion-delay="160">Teoria com base em quatro pilares...</p>
+              <p className="thesis-lead" data-motion="reveal"><DesktopLines lines={["Crescimento exige arquitetura..."]} /></p>
+              <h2 className="thesis-title" data-motion="reveal" data-motion-delay="80"><DesktopLines lines={["TAI - Teoria da Arquitetura Inteligente"]} mobileLines={["TAI - Teoria da", "Arquitetura Inteligente"]} /></h2>
+              <p className="thesis-subtitle" data-motion="reveal" data-motion-delay="160"><DesktopLines lines={["Teoria com base em quatro pilares..."]} /></p>
             </header>
 
             <div className="thesis-grid">
@@ -352,9 +379,7 @@ export default function Home() {
                   <article key={pillar.number} className="thesis-card" data-motion="reveal" data-motion-delay={(Number(pillar.number) - 1) * 70}>
                     <img className="thesis-card__logo" src={pillar.image} alt="" />
                     <h3 className="thesis-card__title">
-                      <span>Arquitetura</span>
-                      <span className="thesis-card__highlight">{pillarName}</span>
-                      <span>Inteligente</span>
+                      <DesktopLines lines={["Arquitetura", <span className="thesis-card__highlight" key="name">{pillarName}</span>, "Inteligente"]} />
                     </h3>
                   </article>
                 );
@@ -376,16 +401,39 @@ export default function Home() {
 
       {/* SOBRE */}
       <section id="sobre" className="about-showcase" aria-label="Quem sou eu">
-        <Image
-          className="about-reference-image"
-          data-motion="reveal"
-          src="/imagens/sobre/quarta-dobra-hd.png"
-          alt="André Cavalcanti apresenta sua atuação em palestras, educação corporativa, consultoria e mentoria, conselho e estratégia."
-          width={5760}
-          height={3240}
-          sizes="(max-width: 1400px) 100vw, 1400px"
-          unoptimized
-        />
+        <div className="about-desktop" data-motion="reveal">
+          <Image
+            className="about-reference-image"
+            src="/imagens/sobre/quarta-dobra-hd.png"
+            alt="André Cavalcanti apresenta sua atuação em palestras, educação corporativa, consultoria e mentoria, conselho e estratégia."
+            width={5760}
+            height={3240}
+            sizes="(max-width: 1400px) 100vw, 1400px"
+            unoptimized
+          />
+          <div className="about-desktop__name about-desktop__name--first" aria-hidden="true">
+            <span className="about-name__word">André</span>
+          </div>
+          <div className="about-desktop__name about-desktop__name--last" aria-hidden="true">
+            <span className="about-name__word">Cavalcanti</span>
+          </div>
+          <svg
+            className="about-desktop__frame"
+            viewBox="0 0 1920 1080"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <defs>
+              <linearGradient id="about-frame-gold" x1="156" y1="46" x2="1338" y2="1047" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#eac454" />
+                <stop offset="0.48" stopColor="#9c731c" />
+                <stop offset="1" stopColor="#e8b43e" />
+              </linearGradient>
+            </defs>
+            <rect x="156" y="46" width="1182" height="1001" rx="26" stroke="url(#about-frame-gold)" strokeWidth="1.15" vectorEffect="non-scaling-stroke" />
+          </svg>
+        </div>
 
         <div className="about-mobile">
           <div className="about-mobile__profile" data-motion="portrait">
@@ -397,26 +445,41 @@ export default function Home() {
               className="about-mobile__portrait"
               sizes="(max-width: 767px) 100vw, 0px"
             />
-            <p className="about-mobile__name">André Cavalcanti</p>
+            <p className="about-mobile__name">
+              <span className="about-name__word about-mobile__name--first">André</span>{" "}
+              <span className="about-name__word about-mobile__name--last">Cavalcanti</span>
+            </p>
           </div>
 
           <div className="about-mobile__bio" data-motion="reveal">
             <p className="about-mobile__eyebrow">Quem sou eu</p>
-            <h2>Estratégia, educação e gestão para transformar organizações.</h2>
-            <p>
-              <strong>MSc. André Cavalcanti</strong> é empreendedor, educador,
-              conselheiro, palestrante internacional e autor. Mestre em Ciências
-              da Educação, especialista em Didática e Metodologia do Ensino
-              Superior, bacharel em Administração, pedagogo, tecnólogo e técnico
-              em Segurança do Trabalho.
-            </p>
-            <p>
-              Atua na concepção, implantação e condução de projetos empresariais,
-              educacionais e tecnológicos; em palestras e programas de
-              desenvolvimento de líderes; e em consultoria voltada a planejamento
-              estratégico, diagnóstico organizacional, gestão de processos,
-              riscos ocupacionais e psicossociais, cultura, comunicação e inovação.
-            </p>
+            <h2><DesktopLines lines={[
+              "Estratégia, educação e",
+              "gestão para transformar",
+              "organizações.",
+            ]} mobileLines={[
+              "Estratégia, educação e gestão",
+              "para transformar organizações.",
+            ]} /></h2>
+            <p><DesktopLines lines={[
+              <Fragment key="bio-name"><strong>MSc. André Cavalcanti</strong> é empreendedor,</Fragment>,
+              "educador, conselheiro, palestrante internacional",
+              "e autor. Mestre em Ciências da Educação,",
+              "especialista em Didática e Metodologia do",
+              "Ensino Superior, bacharel em Administração,",
+              "pedagogo, tecnólogo e técnico em Segurança",
+              "do Trabalho.",
+            ]} /></p>
+            <p><DesktopLines lines={[
+              "Atua na concepção, implantação e condução de",
+              "projetos empresariais, educacionais e",
+              "tecnológicos; em palestras e programas de",
+              "desenvolvimento de líderes; e em consultoria",
+              "voltada a planejamento estratégico, diagnóstico",
+              "organizacional, gestão de processos, riscos",
+              "ocupacionais e psicossociais, cultura,",
+              "comunicação e inovação.",
+            ]} /></p>
           </div>
 
           <div className="about-mobile__services">
@@ -424,8 +487,8 @@ export default function Home() {
               <article key={service.number} className="about-mobile__card" data-motion="reveal" data-motion-delay={(Number(service.number) - 1) * 70}>
                 <span>{service.number}</span>
                 <div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
+                  <h3><DesktopLines lines={service.titleLines} /></h3>
+                  <p><DesktopLines lines={service.descriptionLines} /></p>
                 </div>
               </article>
             ))}
@@ -492,8 +555,8 @@ export default function Home() {
           </nav>
 
           <div className="contact-legal contact-legal--desktop" data-motion="reveal" data-motion-delay="160">
-            <p>@2026 André Cavalcanti. Todos os direitos reservados</p>
-            <p>Desnvolvido por Blend Creative Design Studio.</p>
+            <p><DesktopLines lines={["@2026 André Cavalcanti. Todos os direitos reservados"]} /></p>
+            <p><DesktopLines lines={["Desnvolvido por Blend Creative Design Studio."]} /></p>
           </div>
         </div>
 
@@ -508,15 +571,17 @@ export default function Home() {
           />
 
           <div className="contact-mobile__copy">
-            <h2 data-motion="reveal">Qual construção precisa começar</h2>
+            <h2 data-motion="reveal"><DesktopLines lines={["Qual construção precisa começar"]} mobileLines={["Qual construção", "precisa começar"]} /></h2>
             <p className="contact-mobile__lead" data-motion="reveal" data-motion-delay="80">
-              Projetos diferentes exigem soluções diferentes.
+              <DesktopLines lines={["Projetos diferentes exigem soluções diferentes."]} />
             </p>
             <p data-motion="reveal" data-motion-delay="160">
-              O primeiro passo é compreender onde você está, onde pretende
-              chegar e o que precisa ser construído entre esses dois pontos.
+              <DesktopLines lines={[
+                "O primeiro passo é compreender onde você está, onde",
+                "pretende chegar e o que precisa ser construído entre esses dois pontos.",
+              ]} />
             </p>
-            <h3 data-motion="reveal">Vamos conversar?</h3>
+            <h3 data-motion="reveal"><DesktopLines lines={["Vamos conversar?"]} /></h3>
           </div>
 
           <nav className="contact-mobile__socials" data-motion="reveal" data-motion-delay="80" aria-label="Redes sociais">
@@ -536,8 +601,8 @@ export default function Home() {
               className="contact-mobile__logo"
             />
             <div className="contact-legal">
-              <p>@2026 André Cavalcanti. Todos os direitos reservados</p>
-              <p>Desnvolvido por Blend Creative Design Studio.</p>
+              <p><DesktopLines lines={["@2026 André Cavalcanti. Todos os direitos reservados"]} /></p>
+              <p><DesktopLines lines={["Desnvolvido por Blend Creative Design Studio."]} /></p>
             </div>
           </footer>
         </div>

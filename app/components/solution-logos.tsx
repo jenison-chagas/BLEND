@@ -1,67 +1,22 @@
 "use client";
 
 const brands = [
-  { name: "Gessst", className: "brand-gesst", logo: "/imagens/solucoes/gesst.png", href: "#" },
-  { name: "AEtech", className: "brand-aetech", logo: "/imagens/solucoes/aetech-full.png", href: "#" },
-  { name: "Aurora Softline", className: "brand-aurora", logo: "/imagens/solucoes/aurora.png", href: "#" },
-  { name: "Efetiva", className: "brand-efetiva", logo: "/imagens/solucoes/efetiva-wordmark.png", href: "#" },
-  { name: "Apta", className: "brand-apta", logo: "/imagens/solucoes/apta-nome.png", href: "#" },
-  { name: "conceo Consultoria Empresarial", className: "brand-conceo", logo: "/imagens/solucoes/conceo-simbolo.png", href: "#" },
-  { name: "AORIS", className: "brand-aoris", logo: "/imagens/solucoes/aoris-wordmark.png", href: "#" },
-  { name: "EDUCA.Sys", className: "brand-educa", logo: "/imagens/solucoes/educa-sys.png", href: "#" },
-  { name: "SafeMind Pro", className: "brand-safemind", logo: "/imagens/solucoes/safemind-simbolo.png", href: "#" },
-  { name: "LEXSST", className: "brand-lexsst", logo: "/imagens/solucoes/lexxst.png", href: "#" },
+  { name: "Gessst", className: "brand-gesst", logo: "/imagens/solucoes/originais/gesst.svg", href: "#" },
+  { name: "AEtech", className: "brand-aetech", logo: "/imagens/solucoes/originais/aetech.svg", href: "#" },
+  { name: "Aurora Softline", className: "brand-aurora", logo: "/imagens/solucoes/originais/aurora.svg", href: "#" },
+  { name: "Efetiva", className: "brand-efetiva", logo: "/imagens/solucoes/originais/efetiva.svg", href: "#" },
+  { name: "Apta", className: "brand-apta", logo: "/imagens/solucoes/originais/apta.svg", href: "#" },
+  { name: "conceo Consultoria Empresarial", className: "brand-conceo", logo: "/imagens/solucoes/originais/conceo.svg", href: "#" },
+  { name: "AORIS", className: "brand-aoris", logo: "/imagens/solucoes/originais/aoris.svg", href: "#" },
+  { name: "EDUCA.Sys", className: "brand-educa", logo: "/imagens/solucoes/originais/educa.svg", href: "#" },
+  { name: "SafeMind Pro", className: "brand-safemind", logo: "/imagens/solucoes/originais/safemind.svg", href: "#" },
+  { name: "LEXSST", className: "brand-lexsst", logo: "/imagens/solucoes/originais/lexsst.svg", href: "#" },
 ];
 
-function BrandArtwork({ name, logo }: { name: string; logo: string }) {
-  if (name === "Efetiva") {
-    return (
-      <>
-        <img className="brand-mark brand-mark--efetiva" src="/imagens/solucoes/efetiva-simbolo.png" alt="" />
-        <img className="brand-wordmark brand-wordmark--efetiva" src={logo} alt="" />
-      </>
-    );
-  }
-
-  if (name === "Apta") {
-    return (
-      <>
-        <img className="brand-mark brand-mark--apta" src="/imagens/solucoes/apta-simbolo.png" alt="" />
-        <img className="brand-wordmark brand-wordmark--apta" src={logo} alt="" />
-      </>
-    );
-  }
-
-  if (name === "AORIS") {
-    return (
-      <>
-        <img className="brand-mark brand-mark--aoris" src="/imagens/solucoes/aoris-simbolo.png" alt="" />
-        <img className="brand-wordmark brand-wordmark--aoris" src={logo} alt="" />
-      </>
-    );
-  }
-
-  if (name === "conceo Consultoria Empresarial") {
-    return (
-      <>
-        <img className="brand-mark brand-mark--conceo" src={logo} alt="" />
-        <span className="brand-wordmark brand-wordmark--conceo">conceo</span>
-        <span className="brand-caption">Consultoria Empresarial</span>
-      </>
-    );
-  }
-
-  if (name === "SafeMind Pro") {
-    return (
-      <>
-        <img className="brand-mark brand-mark--safemind" src={logo} alt="" />
-        <span className="brand-wordmark brand-wordmark--safemind">safeMind</span>
-        <span className="brand-caption brand-caption--safemind">pro</span>
-      </>
-    );
-  }
-
-  return <img className="brand-wordmark" src={logo} alt="" />;
+// Each asset is the complete composition extracted from the approved PDF.
+// Sharing it across both layouts preserves lettering, spacing and proportions.
+function BrandArtwork({ logo }: { name: string; logo: string }) {
+  return <img className="brand-artwork" src={logo} alt="" draggable={false} />;
 }
 
 export function SolutionLogos() {
