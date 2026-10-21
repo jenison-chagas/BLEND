@@ -1,0 +1,66 @@
+/* Fade decorative artwork on all four sides, only on larger layouts. */
+@media (min-width: 768px) {
+  #solucoes .solutions-filigree,
+  #tese .thesis-filigree,
+  #contato .contact-filigree {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 22%, #000 70%, transparent),
+      linear-gradient(to bottom, transparent, #000 16%, #000 80%, transparent);
+    mask-image:
+      linear-gradient(to right, transparent, #000 22%, #000 70%, transparent),
+      linear-gradient(to bottom, transparent, #000 16%, #000 80%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    mask-repeat: no-repeat;
+  }
+
+  /* Hide cuts where oversized decorations meet their section boundary.
+     Narrow edge bands stay outside the text, cards and portrait. */
+  #solucoes .solutions-stage::after,
+  #tese .thesis-stage::after,
+  #sobre .about-desktop::after,
+  #contato .contact-artboard::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, var(--edge-black), transparent 6%, transparent 94%, var(--edge-black)),
+      linear-gradient(to bottom, var(--edge-black), transparent 3%, transparent 98%, var(--edge-black));
+  }
+
+  #solucoes .solutions-stage,
+  #tese .thesis-stage {
+    --edge-black: #050505;
+  }
+
+  #sobre .about-desktop,
+  #contato .contact-artboard {
+    --edge-black: #000;
+  }
+
+  #solucoes .solutions-brands {
+    z-index: 4;
+  }
+}
+/* The desktop thesis decoration is baked into the reference image itself.
+   Fade the image's own bounds, rather than the wider surrounding stage. */
+@media (min-width: 768px) {
+  #tese .thesis-stage {
+    --edge-black: #000;
+    background-color: #000;
+  }
+
+  #tese .thesis-reference-image {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 3%, #000 97%, transparent),
+      linear-gradient(to bottom, transparent, #000 5%, #000 96%, transparent);
+    mask-image:
+      linear-gradient(to right, transparent, #000 3%, #000 97%, transparent),
+      linear-gradient(to bottom, transparent, #000 5%, #000 96%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    mask-repeat: no-repeat;
+  }
+}

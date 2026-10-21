@@ -12,10 +12,16 @@ export function DesktopLines({ lines, mobileLines }: {
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(media.matches);
+    const update = () => setIsMobile(
+      media.matches && !document.documentElement.hasAttribute("data-desktop-zoom-locked"),
+    );
     update();
     media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
+    document.addEventListener("desktop-zoom-change", update);
+    return () => {
+      media.removeEventListener("change", update);
+      document.removeEventListener("desktop-zoom-change", update);
+    };
   }, []);
   const ref = useRef<HTMLSpanElement>(null);
 

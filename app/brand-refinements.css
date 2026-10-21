@@ -67,7 +67,7 @@
   width: 29.5%;
   height: 13%;
   align-items: flex-start;
-  font-size: 7cqw;
+  font-size: 5.2cqw;
 }
 
 .about-desktop__name--last {
@@ -111,7 +111,7 @@
     top: 5%;
     right: 4%;
     width: 54%;
-    font-size: 14cqw;
+    font-size: 14.75cqw;
     text-align: right;
   }
 
@@ -167,4 +167,22 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+/* Conceal the filled gold strip baked into the desktop reference artwork.
+   The separate SVG above it retains only the thin rounded outline. */
+.about-desktop::before {
+  content: "";
+  position: absolute;
+  top: 4.3%;
+  left: 8.1%;
+  width: 61.6%;
+  height: 3.2%;
+  z-index: 0;
+  background: #000;
+  pointer-events: none;
+}
+
+.about-desktop__name {
+  z-index: 1;
 }

@@ -236,3 +236,44 @@
     padding: 0;
   }
 }
+
+/* Shared square orbit: 11 equal boxes and equal angular spacing on every tablet/desktop. */
+@media (min-width: 768px) {
+  #solucoes .solutions-stage {
+    --solutions-orbit-size: min(92vw, 90svh, 1200px);
+    height: var(--solutions-orbit-size);
+    min-height: var(--solutions-orbit-size);
+  }
+
+  #solucoes .solutions-brands {
+    position: absolute;
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: var(--solutions-orbit-size);
+    height: var(--solutions-orbit-size);
+    min-height: 0;
+    display: block;
+    transform: translate(-50%, -50%);
+  }
+
+  #solucoes .solutions-brands .solutions-brand {
+    position: absolute;
+    inset: auto;
+    left: 0;
+    top: 0;
+    width: 19.5%;
+    height: 19.5%;
+    padding: 6px;
+    offset-path: circle(40% at 50% 50%);
+    offset-anchor: center;
+    offset-rotate: 0deg;
+    offset-distance: var(--orbit-start);
+  }
+
+  /* The wolf fits inside the orbit; the complete logo boxes remain outside it. */
+  #solucoes .solutions-wolf {
+    width: calc(var(--solutions-orbit-size) * 0.52);
+    height: calc(var(--solutions-orbit-size) * 0.52);
+  }
+}

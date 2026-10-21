@@ -1,5 +1,7 @@
 "use client";
 
+import type { CSSProperties } from "react";
+
 const brands = [
   { name: "Gessst", className: "brand-gesst", logo: "/imagens/solucoes/originais/gesst.svg", href: "#" },
   { name: "AEtech", className: "brand-aetech", logo: "/imagens/solucoes/originais/aetech.svg", href: "#" },
@@ -11,9 +13,17 @@ const brands = [
   { name: "EDUCA.Sys", className: "brand-educa", logo: "/imagens/solucoes/originais/educa.svg", href: "#" },
   { name: "SafeMind Pro", className: "brand-safemind", logo: "/imagens/solucoes/originais/safemind.svg", href: "#" },
   { name: "LEXSST", className: "brand-lexsst", logo: "/imagens/solucoes/originais/lexsst.svg", href: "#" },
+  { name: "Consitus Log", className: "brand-consitus", logo: "/imagens/solucoes/originais/consitus.svg", href: "#" },
 ];
 
-// Each asset is the complete composition extracted from the approved PDF.
+// Clockwise order; every center is exactly 1/11 of a revolution apart.
+const orbitOrder = [
+  "brand-aetech", "brand-aurora", "brand-apta", "brand-aoris",
+  "brand-lexsst", "brand-consitus", "brand-safemind", "brand-educa",
+  "brand-conceo", "brand-efetiva", "brand-gesst",
+];
+
+// Each asset preserves the complete supplied brand composition.
 // Sharing it across both layouts preserves lettering, spacing and proportions.
 function BrandArtwork({ logo }: { name: string; logo: string }) {
   return <img className="brand-artwork" src={logo} alt="" draggable={false} />;
@@ -32,6 +42,9 @@ export function SolutionLogos() {
             <a
               key={brand.name}
               className={`solutions-brand ${brand.className}`}
+              style={{
+                "--orbit-start": `${(75 + orbitOrder.indexOf(brand.className) * 100 / brands.length) % 100}%`,
+              } as CSSProperties}
               href={brand.href}
               aria-label={`${brand.name} — link para configurar`}
               title={`${brand.name}: link para configurar`}

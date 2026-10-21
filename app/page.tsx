@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
+import { DesktopZoom } from "./components/desktop-zoom";
 import { DesktopLines } from "./components/desktop-lines";
 import { SolutionLogos } from "./components/solution-logos";
 import { PageMotion } from "./components/page-motion";
@@ -8,6 +9,8 @@ import "./responsive.css";
 import "./motion.css";
 import "./loading-screen.css";
 import "./brand-refinements.css";
+import "./section-navigation.css";
+import "./background-edges.css";
 
 const pillars = [
   {
@@ -139,6 +142,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#080808] text-[#f5f2eb]">
       <PageLoader />
+      <DesktopZoom />
       <PageMotion />
       {/* CABEÇALHO */}
       <header translate="no" className="relative z-30 bg-[#080808]">
@@ -177,6 +181,14 @@ export default function Home() {
           >
             <span className="h-1 w-1 rounded-full bg-[#F2AD16]/60" />
             QUEM SOU EU
+          </a>
+
+          <a
+            href="#contato"
+            className="inline-flex items-center gap-2 whitespace-nowrap text-[10px] uppercase tracking-[0.12em] text-white/70 transition-colors hover:text-[#F2AD16] lg:text-[11px]"
+          >
+            <span className="h-1 w-1 rounded-full bg-[#F2AD16]/60" />
+            CONTATO
           </a>
 
           <a href="#contato" className={`${goldButton} px-3 sm:px-5`}>
@@ -246,6 +258,8 @@ export default function Home() {
             <div className="mb-6" data-motion="reveal">
               <img
                 src="/imagens/logo_andre.png"
+                width={710}
+                height={355}
                 alt="André Cavalcanti"
                 className="block h-auto w-[min(100%,420px)] object-contain object-left"
               />
@@ -263,13 +277,7 @@ export default function Home() {
               ]} />
             </h2>
 
-            <p className="hero-description mt-5 max-w-3xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">
-              <DesktopLines lines={[
-                "Ajudo empresários, líderes e organizações a transformar",
-                "conhecimento em decisão, intenção em construção",
-                "e potencial em resultados sustentáveis.",
-              ]} />
-            </p>
+
           </div>
 
           {/* RETRATO */}
@@ -286,6 +294,8 @@ export default function Home() {
 
             <img
               src="/imagens/img01.png"
+              width={1347}
+              height={1168}
               alt="André Cavalcanti"
               className="relative z-10 block h-full w-full object-contain object-bottom lg:absolute lg:bottom-[1%] lg:right-[-2%] lg:h-[100%] lg:w-[108%]"
               style={{
@@ -358,6 +368,8 @@ export default function Home() {
             className="thesis-reference-image"
             data-motion="reveal"
             src="/imagens/tese/terceira-dobra.png"
+            width={2800}
+            height={1575}
             alt="Crescimento exige arquitetura. TAI - Teoria da Arquitetura Inteligente. Teoria com base em quatro pilares: Arquitetura Pessoal Inteligente, Arquitetura Relacional Inteligente, Arquitetura Organizacional Inteligente e Arquitetura de Legado Inteligente. Diagnóstico, direcionamento, ação e registro."
           />
           <img className="thesis-wolf" src="/imagens/lobo.png" alt="" aria-hidden="true" />

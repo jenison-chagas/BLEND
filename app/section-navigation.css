@@ -1,0 +1,36 @@
+/* The menu scrolls away; there is no fixed 80px header to compensate for. */
+html {
+  scroll-padding-top: 0;
+}
+
+main > section[id] {
+  scroll-margin-top: 0;
+}
+
+/* A short selected section fills the screen instead of exposing its neighbor.
+   A longer section grows naturally, keeping its ending within the same fold. */
+main > :is(#inicio, #solucoes, #tese, #sobre, #contato):target {
+  min-height: 100svh !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+main > :is(#solucoes, #tese, #sobre, #contato):target {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* The marquee stays inside #inicio and the process stays inside #tese. */
+#inicio .hero-marquee {
+  position: relative;
+  flex-shrink: 0;
+}
+
+#tese .thesis-process {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
