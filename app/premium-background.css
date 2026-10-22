@@ -163,3 +163,28 @@
 #contato .contact-artboard {
   overflow: visible;
 }
+
+/* Keep a continuous background across the complete third section, including
+   viewport-fitting margins. Screen removes only the artwork's black backing. */
+#tese {
+  isolation: isolate;
+  background: #050505;
+}
+
+#tese .thesis-stage {
+  background: transparent;
+  isolation: auto;
+}
+
+#tese .thesis-reference-image {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+#tese .thesis-content {
+  position: relative;
+  z-index: 1;
+}
+
+#tese .thesis-wolf { z-index: 0; }

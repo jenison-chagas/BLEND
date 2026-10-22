@@ -367,8 +367,8 @@ export default function Home() {
 
       {/* TESE */}
       <section id="tese" className="thesis-showcase">
+        <PremiumBackground />
         <div className="thesis-stage">
-          <PremiumBackground />
           <img
             className="thesis-reference-image"
             data-motion="reveal"
