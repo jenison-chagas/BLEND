@@ -186,3 +186,19 @@
 .about-desktop__name {
   z-index: 1;
 }
+
+/* Desktop artwork: conceal the baked gold fill above the image, then draw
+   a single clean outline above both the cover and the replacement lettering. */
+@media (min-width: 768px) {
+  .about-desktop::before {
+    top: 4.15%;
+    left: 8.05%;
+    width: 61.7%;
+    height: 3.5%;
+    border-radius: 18px 18px 0 0;
+    z-index: 1;
+  }
+
+  .about-desktop__name { z-index: 2; }
+  .about-desktop__frame { z-index: 3; }
+}

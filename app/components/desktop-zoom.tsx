@@ -15,7 +15,9 @@ const geometry = [
   "align-items", "align-self", "justify-content", "justify-self",
   "grid-template-columns", "grid-template-rows", "column-gap", "row-gap",
   "aspect-ratio", "object-fit", "object-position", "border-radius",
-  "offset-path", "offset-anchor", "offset-rotate", "transform-origin",
+  "offset-path", "offset-anchor", "offset-rotate", "transform", "transform-origin",
+  "border-top-left-radius", "border-top-right-radius", "border-bottom-left-radius", "border-bottom-right-radius",
+  "background-size", "background-position", "mask-size", "mask-position",
   "animation-name", "animation-duration", "animation-timing-function",
   "animation-iteration-count", "animation-direction", "animation-fill-mode", "animation-delay",
 ] as const;
@@ -36,7 +38,6 @@ export function DesktopZoom() {
     const tracked = new Set<HTMLElement | SVGElement>();
     let baselineDpr = window.devicePixelRatio;
     let baselineWidth = window.innerWidth;
-    let screenKey = `${screen.width}:${screen.height}`;
     let eligible = false;
     let frame = 0;
     let centerFrame = 0;
@@ -70,7 +71,6 @@ export function DesktopZoom() {
       eligible = pointer.matches && !mobileDevice && window.innerWidth >= 1024;
       baselineDpr = window.devicePixelRatio;
       baselineWidth = window.innerWidth;
-      screenKey = `${screen.width}:${screen.height}`;
       if (!eligible) {
         style.textContent = "";
         return;
@@ -87,6 +87,13 @@ export function DesktopZoom() {
           .filter((property) => element !== main || !["height", "min-height", "max-height"].includes(property))
           .map((property) => `${property}:${computed.getPropertyValue(property)} !important`).join(";");
         rules.push(`html[data-desktop-zoom-locked] [data-desktop-zoom-id="${index}"]{${declarations}}`);
+        for (const pseudo of ["::before", "::after"]) {
+          const decoration = getComputedStyle(element, pseudo);
+          if (decoration.content === "none" || decoration.content === "normal") continue;
+          const decorationGeometry = geometry
+            .map((property) => `${property}:${decoration.getPropertyValue(property)} !important`).join(";");
+          rules.push(`html[data-desktop-zoom-locked] [data-desktop-zoom-id="${index}"]${pseudo}{${decorationGeometry}}`);
+        }
       }
       // Give the original desktop canvas room to grow without changing columns.
       rules.push(`html[data-desktop-zoom-locked] body{width:${baselineWidth}px!important;min-width:${baselineWidth}px!important;max-width:none!important;margin-inline:auto!important}`);
@@ -99,8 +106,9 @@ export function DesktopZoom() {
       frame = requestAnimationFrame(capture);
     };
     const update = () => {
-      const sameDevice = screenKey === `${screen.width}:${screen.height}`
-        && pointer.matches && !mobileDevice;
+      // Some browsers change screen.width during page zoom as well as innerWidth.
+      // DPR is the zoom signal; screen.width must not discard the saved Full layout.
+      const sameDevice = pointer.matches && !mobileDevice;
       const zoomChanged = Math.abs(window.devicePixelRatio / baselineDpr - 1) > 0.015;
       if (eligible && sameDevice && zoomChanged) {
         cancelAnimationFrame(frame);
