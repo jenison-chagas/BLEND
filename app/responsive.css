@@ -661,3 +661,32 @@
     margin-inline: auto;
   }
 }
+
+/* Desktop through Full: fit the entire about composition, not just the photo.
+   The same sizing applies with and without #sobre so menu navigation is stable. */
+@media (min-width: 1024px) {
+  #sobre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100svh;
+    padding-block: 0;
+  }
+
+  #sobre .about-desktop {
+    display: block;
+    width: min(94vw, 1840px, calc((100svh - 48px) * 16 / 9));
+    max-width: 100%;
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+
+  #sobre .about-reference-image {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+  }
+}
