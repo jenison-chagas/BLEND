@@ -1,5 +1,6 @@
 "use client";
 
+import { PremiumBackground } from "./premium-background";
 import type { CSSProperties } from "react";
 
 const brands = [
@@ -33,9 +34,10 @@ export function SolutionLogos() {
   return (
     <section id="solucoes" className="solutions-showcase" aria-label="Soluções e marcas parceiras">
       <div className="solutions-stage">
+        <PremiumBackground />
         <img className="solutions-wolf" src="/imagens/lobo.png" alt="" aria-hidden="true" />
-        <img className="solutions-filigree solutions-filigree--left" src="/imagens/solucoes/decoracao-fios.png" alt="" aria-hidden="true" />
-        <img className="solutions-filigree solutions-filigree--right" src="/imagens/solucoes/decoracao-fios.png" alt="" aria-hidden="true" />
+
+
 
         <div className="solutions-brands">
           {brands.map((brand) => (

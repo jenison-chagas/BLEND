@@ -1,0 +1,165 @@
+/* Satin curves, sculpted metallic points and a quiet architectural grid. */
+#inicio,
+#solucoes .solutions-stage,
+#tese .thesis-stage,
+#sobre .about-desktop,
+#sobre .about-mobile,
+#contato .contact-artboard,
+#contato .contact-mobile {
+  position: relative;
+  isolation: isolate;
+}
+
+.premium-background {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  max-width: none;
+  transform: translateX(-50%);
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: screen;
+  opacity: var(--premium-opacity, .46);
+  background-image: url("/imagens/premium-fusion.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-mask-image:
+    linear-gradient(transparent, #000 9%, #000 var(--premium-fade-start, 82%), transparent var(--premium-fade-end, 100%)),
+    radial-gradient(ellipse var(--premium-clear-width, 40%) var(--premium-clear-height, 48%) at var(--premium-clear-x, 50%) var(--premium-clear-y, 50%), rgb(0 0 0 / var(--premium-clear-alpha, .18)) 0%, rgb(0 0 0 / .28) 40%, #000 100%);
+  mask-image:
+    linear-gradient(transparent, #000 9%, #000 var(--premium-fade-start, 82%), transparent var(--premium-fade-end, 100%)),
+    radial-gradient(ellipse var(--premium-clear-width, 40%) var(--premium-clear-height, 48%) at var(--premium-clear-x, 50%) var(--premium-clear-y, 50%), rgb(0 0 0 / var(--premium-clear-alpha, .18)) 0%, rgb(0 0 0 / .28) 40%, #000 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  mask-repeat: no-repeat;
+}
+
+.premium-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/imagens/premium-grain.svg") repeat;
+  opacity: .12;
+}
+
+#inicio > .premium-background {
+  z-index: 1;
+}
+
+#solucoes .solutions-brands,
+#solucoes .solutions-carousel {
+  z-index: 2;
+}
+
+#solucoes .solutions-carousel {
+  position: relative;
+}
+
+/* Remove the diagonal decoration baked into the margins of the about image.
+   The two content panels, including the portrait, retain their original pixels. */
+.about-reference-image {
+  -webkit-mask: url("/imagens/sobre/about-content-mask.svg") center / 100% 100% no-repeat;
+  mask: url("/imagens/sobre/about-content-mask.svg") center / 100% 100% no-repeat;
+}
+
+
+/* Leave the existing wolves visually clear without changing their artwork. */
+#inicio > .premium-background {
+  --premium-clear-x: 31%;
+  --premium-clear-y: 29%;
+  --premium-clear-width: 36%;
+  --premium-clear-height: 48%;
+  --premium-clear-alpha: .08;
+}
+
+#solucoes .premium-background,
+#tese .premium-background {
+  --premium-clear-width: 45%;
+  --premium-clear-height: 55%;
+  --premium-clear-alpha: .08;
+}
+
+#tese .premium-background {
+  transform: translateX(-50%) scaleX(-1);
+}
+
+#contato .premium-background {
+  --premium-opacity: .30;
+  --premium-clear-x: 76%;
+  --premium-clear-y: 44%;
+  --premium-clear-width: 40%;
+  --premium-clear-height: 60%;
+  --premium-clear-alpha: .06;
+  --premium-fade-start: 60%;
+  --premium-fade-end: 86%;
+}
+
+/* The credits sit in an almost black zone, independently of section height. */
+#contato .contact-legal {
+  isolation: isolate;
+}
+
+#contato .contact-legal::before {
+  content: "";
+  position: absolute;
+  inset: -8px -12px;
+  z-index: -1;
+  background: rgb(0 0 0 / .94);
+  filter: blur(9px);
+  pointer-events: none;
+}
+
+/* Restore the previous mobile background composition only. */
+@media (max-width: 767px) {
+  .premium-background,
+  #contato .premium-background {
+    opacity: .42;
+    background-image: url("/imagens/premium-fusion.png");
+    background-size: cover;
+    background-position: 80% center;
+    background-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-composite: source-over;
+    mask-composite: add;
+  }
+
+  #contato .premium-background {
+    transform: translateX(-50%) scaleX(-1);
+  }
+
+  #contato .contact-mobile {
+    background: radial-gradient(ellipse at 74% 43%, rgba(149, 126, 82, .11), transparent 49%), #000;
+  }
+
+  #contato .contact-mobile__footer {
+    background: transparent;
+  }
+
+  #contato .contact-legal::before {
+    display: none;
+  }
+}
+
+@media (min-width: 1600px) {
+  .premium-background {
+    --premium-opacity: .40;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #contato .premium-background {
+    --premium-opacity: .26;
+  }
+}
+
+/* Let only the decorative layer extend beyond the centered content canvas.
+   The outer sections retain clipping, so no horizontal scrollbar is created. */
+#solucoes .solutions-stage,
+#tese .thesis-stage,
+#contato .contact-artboard {
+  overflow: visible;
+}

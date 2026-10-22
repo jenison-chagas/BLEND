@@ -273,7 +273,330 @@
 
   /* The wolf fits inside the orbit; the complete logo boxes remain outside it. */
   #solucoes .solutions-wolf {
+    top: 50%;
     width: calc(var(--solutions-orbit-size) * 0.52);
     height: calc(var(--solutions-orbit-size) * 0.52);
+  }
+}
+/* Desktop opening reserves a complete row for the marquee within the viewport. */
+@media (min-width: 1024px) {
+  #inicio {
+    display: flex;
+    flex-direction: column;
+    height: calc(100svh - 82px);
+    min-height: 0;
+  }
+
+  #inicio .hero-main-layout {
+    flex: 1 1 auto;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    padding-block: 12px 0;
+    position: relative;
+    top: -16px;
+  }
+
+  #inicio .hero-portrait {
+    --hero-portrait-scale: 1;
+    height: min(70svh, 640px);
+    min-height: 0;
+    max-height: 100%;
+  }
+
+  #inicio .hero-portrait > img {
+    width: 100%;
+    right: 0;
+  }
+
+  #inicio .hero-marquee {
+    flex: 0 0 auto;
+    margin-top: 0;
+    top: 0;
+  }
+}
+/* Full-size screens keep the same balanced composition at a larger scale. */
+@media (min-width: 1440px) and (min-height: 800px) {
+  #inicio > .hero-main-layout {
+    top: -32px;
+    max-width: min(94vw, 1840px);
+    padding-inline: clamp(48px, 4vw, 80px);
+    column-gap: clamp(24px, 3vw, 56px);
+    align-items: center;
+  }
+
+  #inicio .hero-copy > div > img {
+    width: min(100%, clamp(420px, 28vw, 600px));
+  }
+
+  #inicio .hero-copy h2 {
+    font-size: clamp(30px, 1.9vw, 42px);
+  }
+
+  #inicio .hero-portrait {
+    align-self: center;
+    height: min(76svh, 900px);
+    max-height: 100%;
+  }
+
+  #inicio .hero-portrait > img {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+/* Full screens only: use the hero's content width throughout the page.
+   The wider about artwork compensates its own built-in empty side margins. */
+@media (min-width: 1440px) and (min-height: 800px) {
+  main {
+    --full-canvas: min(94vw, 1840px);
+    --full-gutter: clamp(48px, 4vw, 80px);
+    --full-about-width: calc((var(--full-canvas) - 2 * var(--full-gutter)) / .838);
+  }
+
+  main > header nav[aria-label="Navegação principal"] {
+    max-width: var(--full-canvas);
+    padding-inline: var(--full-gutter);
+  }
+
+  #solucoes .solutions-stage,
+  #tese .thesis-stage {
+    width: var(--full-canvas);
+    max-width: 100%;
+  }
+
+  #tese .thesis-reference-image {
+    width: calc(100% - 24px);
+    max-width: none;
+    height: auto;
+  }
+
+  #sobre .about-desktop {
+    width: var(--full-about-width);
+    max-width: none;
+    flex-shrink: 0;
+    margin-inline: calc((100% - var(--full-about-width)) / 2);
+  }
+
+  #sobre .about-reference-image {
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+
+  #contato .contact-artboard {
+    width: var(--full-canvas);
+    max-width: 100%;
+  }
+
+  #contato .contact-social-hotspots {
+    width: 100%;
+    max-width: none;
+  }
+
+  #contato .contact-legal--desktop {
+    right: 4.32%;
+    font-size: clamp(9px, .65vw, 12px);
+  }
+}
+/* MacBook Air-sized notebook viewports: compact first-fold framing only. */
+@media (min-width: 1280px) and (max-width: 1600px) and (min-height: 850px) and (hover: hover) and (pointer: fine) {
+  #inicio > .hero-main-layout {
+    max-width: 1368px;
+    min-height: 0;
+    top: -24px;
+    padding: 12px 48px 0;
+    column-gap: 24px;
+    align-items: center;
+  }
+
+  #inicio .hero-copy > div > img {
+    width: min(100%, 420px);
+  }
+
+  #inicio .hero-copy h2 {
+    font-size: 30px;
+  }
+
+  #inicio .hero-portrait {
+    align-self: center;
+    height: min(68svh, 620px);
+    min-height: 0;
+    max-height: 100%;
+  }
+
+  #inicio .hero-portrait > img {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  #inicio .hero-marquee {
+    top: 0;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+}
+/* Exact MacBook Air preview range (1559 x 975): do not affect other presets. */
+
+/* Keep the books near the name strip without moving the copy or the strip. */
+@media (min-width: 1024px) {
+  #inicio .hero-main-layout {
+    --portrait-floor-offset: 16px;
+  }
+
+  #inicio .hero-portrait {
+    align-self: end;
+    top: var(--portrait-floor-offset);
+  }
+
+  #inicio .hero-portrait > img {
+    position: absolute;
+    inset: auto;
+    left: 0;
+    right: 0;
+    bottom: -24px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+}
+
+@media (min-width: 1440px) and (min-height: 800px) {
+  #inicio .hero-main-layout { --portrait-floor-offset: 32px; }
+}
+
+@media (min-width: 1280px) and (max-width: 1600px) and (min-height: 850px) and (hover: hover) and (pointer: fine) {
+  #inicio .hero-main-layout { --portrait-floor-offset: 24px; }
+}
+
+
+/* MacBook Air 1559 x 975 only: bring the book stack down to the name strip. */
+
+
+/* Fade the bitmap itself, not a larger letterboxed rectangle, on large screens. */
+@media (min-width: 1024px) {
+  #inicio .hero-portrait > img {
+    height: auto;
+    aspect-ratio: 1347 / 1168;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 12%, #000 85%, transparent),
+      linear-gradient(to bottom, transparent, #000 8%, #000 86%, transparent) !important;
+    mask-image:
+      linear-gradient(to right, transparent, #000 12%, #000 85%, transparent),
+      linear-gradient(to bottom, transparent, #000 8%, #000 86%, transparent) !important;
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    mask-repeat: no-repeat;
+  }
+
+  /* These solid-color overlays caused a visible dark rectangle on the new BG. */
+  #inicio .hero-portrait-fade {
+    display: none;
+  }
+}
+/* MacBook Air only: correct the excessive drop and keep the photo above the strip. */
+
+
+/* Single authoritative composition for the MacBook Air 1559 x 975 preset. */
+@media (min-width: 1536px) and (max-width: 1580px) and (min-height: 940px) and (max-height: 1000px) {
+  #inicio {
+    height: 740px;
+    min-height: 0;
+  }
+
+  #inicio > .hero-main-layout {
+    --portrait-floor-offset: 0px;
+    flex: 0 0 680px;
+    height: 680px;
+    min-height: 0;
+    max-width: 1368px;
+    top: 0;
+    padding: 8px 48px 0;
+    column-gap: 24px;
+    align-items: center;
+    overflow: visible;
+  }
+
+  #inicio .hero-copy {
+    top: -32px;
+  }
+
+  #inicio .hero-copy > div > img {
+    width: min(100%, 420px);
+  }
+
+  #inicio .hero-copy h2 {
+    font-size: 30px;
+  }
+
+  #inicio .hero-portrait {
+    position: relative;
+    inset: auto;
+    align-self: end;
+    top: -100px;
+    width: 108%;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 1347 / 1168;
+    margin: 0 0 0 -4%;
+    display: block;
+    overflow: visible;
+  }
+
+  #inicio .hero-portrait > img {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  #inicio > .hero-marquee {
+    position: relative;
+    top: 0;
+    margin-top: 0;
+    flex: 0 0 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+
+  #inicio .hero-marquee__viewport {
+    width: 100%;
+  }
+}
+/* iPad Air (820px) and larger: trim the empty top margin inside the thesis artwork. */
+@media (min-width: 820px) {
+  #tese .thesis-reference-image {
+    margin-top: calc(-1 * clamp(16px, 1.5vw, 28px));
+  }
+}
+/* MacBook Air and larger: equal breathing room above and below the logo orbit. */
+@media (min-width: 1440px) {
+  #solucoes {
+    min-height: 0;
+  }
+
+  #solucoes .solutions-stage {
+    --solutions-section-gap: clamp(32px, 4svh, 56px);
+    height: calc(var(--solutions-orbit-size) + 2 * var(--solutions-section-gap));
+    min-height: calc(var(--solutions-orbit-size) + 2 * var(--solutions-section-gap));
+  }
+
+  #solucoes .solutions-brands,
+  #solucoes .solutions-wolf {
+    top: 50%;
   }
 }

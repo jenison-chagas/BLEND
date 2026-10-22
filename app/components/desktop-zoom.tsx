@@ -25,7 +25,11 @@ export function DesktopZoom() {
     const root = document.documentElement;
     const main = document.querySelector("main");
     if (!main) return;
-    const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const pointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
+    const device = navigator as Navigator & { userAgentData?: { mobile?: boolean } };
+    const mobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+      || device.userAgentData?.mobile === true
+      || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const style = document.createElement("style");
     style.dataset.desktopZoomStyles = "true";
     document.head.append(style);
@@ -61,8 +65,9 @@ export function DesktopZoom() {
 
     const capture = () => {
       if (disposed || root.hasAttribute("data-desktop-zoom-locked")) return;
-      eligible = pointer.matches && navigator.maxTouchPoints === 0
-        && window.innerWidth >= 1024 && screen.width >= 1024;
+      // Desktop and Full HD/ultrawide/fullscreen canvases share the same rule.
+      // No upper size limit or physical-screen restriction on large previews.
+      eligible = pointer.matches && !mobileDevice && window.innerWidth >= 1024;
       baselineDpr = window.devicePixelRatio;
       baselineWidth = window.innerWidth;
       screenKey = `${screen.width}:${screen.height}`;
@@ -95,7 +100,7 @@ export function DesktopZoom() {
     };
     const update = () => {
       const sameDevice = screenKey === `${screen.width}:${screen.height}`
-        && pointer.matches && navigator.maxTouchPoints === 0;
+        && pointer.matches && !mobileDevice;
       const zoomChanged = Math.abs(window.devicePixelRatio / baselineDpr - 1) > 0.015;
       if (eligible && sameDevice && zoomChanged) {
         cancelAnimationFrame(frame);
@@ -115,6 +120,7 @@ export function DesktopZoom() {
     document.addEventListener("page:ready", scheduleCapture);
     main.addEventListener("load", scheduleCapture, true);
     window.addEventListener("resize", update);
+    document.addEventListener("fullscreenchange", update);
     pointer.addEventListener("change", update);
     return () => {
       disposed = true;
@@ -123,6 +129,7 @@ export function DesktopZoom() {
       document.removeEventListener("page:ready", scheduleCapture);
       main.removeEventListener("load", scheduleCapture, true);
       window.removeEventListener("resize", update);
+      document.removeEventListener("fullscreenchange", update);
       pointer.removeEventListener("change", update);
       unlock();
       style.remove();

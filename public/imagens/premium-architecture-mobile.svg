@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="1000" viewBox="0 0 500 1000">
+<defs><linearGradient id="satin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#241e12"/><stop offset=".5" stop-color="#a17b40"/><stop offset="1" stop-color="#1b170f"/></linearGradient><pattern id="studs" width="17" height="17" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".7" fill="#ad8b4e"/></pattern></defs>
+<path d="M-95 400 109-50H184L-20 400Z" fill="url(#satin)" opacity=".32"/>
+<path d="M-20 400 184-50H197L-7 400Z" fill="#9c7941" opacity=".12"/>
+<path d="M560 535A215 215 0 1 0 560 965V929A179 179 0 1 1 560 571Z" fill="url(#satin)" opacity=".29"/>
+<rect x="341" y="210" width="85" height="68" fill="url(#studs)" opacity=".23"/>
+</svg>

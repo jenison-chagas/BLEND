@@ -1,5 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
+import { PremiumBackground } from "./components/premium-background";
+import { SectionNavigation } from "./components/section-navigation";
 import { DesktopZoom } from "./components/desktop-zoom";
 import { DesktopLines } from "./components/desktop-lines";
 import { SolutionLogos } from "./components/solution-logos";
@@ -10,7 +12,7 @@ import "./motion.css";
 import "./loading-screen.css";
 import "./brand-refinements.css";
 import "./section-navigation.css";
-import "./background-edges.css";
+import "./premium-background.css";
 
 const pillars = [
   {
@@ -144,6 +146,7 @@ export default function Home() {
       <PageLoader />
       <DesktopZoom />
       <PageMotion />
+      <SectionNavigation />
       {/* CABEÇALHO */}
       <header translate="no" className="relative z-30 bg-[#080808]">
         <nav
@@ -203,6 +206,7 @@ export default function Home() {
         id="inicio"
         className="relative isolate min-h-[calc(100svh-76px)] overflow-hidden bg-[#080808] sm:min-h-[calc(100svh-82px)]"
       >
+        <PremiumBackground />
         {/* Fundo */}
         <div
           aria-hidden="true"
@@ -310,7 +314,7 @@ export default function Home() {
 
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[10%]"
+              className="hero-portrait-fade pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[10%]"
               style={{
                 background:
                   "linear-gradient(to bottom, transparent 0%, rgba(8,8,8,0.25) 55%, #080808 100%)",
@@ -319,7 +323,7 @@ export default function Home() {
 
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[18%]"
+              className="hero-portrait-fade pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[18%]"
               style={{
                 background:
                   "linear-gradient(to bottom, transparent 0%, rgba(8,8,8,0.4) 55%, #080808 100%)",
@@ -364,17 +368,18 @@ export default function Home() {
       {/* TESE */}
       <section id="tese" className="thesis-showcase">
         <div className="thesis-stage">
+          <PremiumBackground />
           <img
             className="thesis-reference-image"
             data-motion="reveal"
-            src="/imagens/tese/terceira-dobra.png"
+            src="/imagens/tese/terceira-dobra-clean.png"
             width={2800}
             height={1575}
             alt="Crescimento exige arquitetura. TAI - Teoria da Arquitetura Inteligente. Teoria com base em quatro pilares: Arquitetura Pessoal Inteligente, Arquitetura Relacional Inteligente, Arquitetura Organizacional Inteligente e Arquitetura de Legado Inteligente. Diagnóstico, direcionamento, ação e registro."
           />
           <img className="thesis-wolf" src="/imagens/lobo.png" alt="" aria-hidden="true" />
-          <img className="thesis-filigree thesis-filigree--left" src="/imagens/solucoes/decoracao-fios.png" alt="" aria-hidden="true" />
-          <img className="thesis-filigree thesis-filigree--right" src="/imagens/solucoes/decoracao-fios.png" alt="" aria-hidden="true" />
+
+
 
           <div className="thesis-content">
             <header className="thesis-heading">
@@ -414,9 +419,10 @@ export default function Home() {
       {/* SOBRE */}
       <section id="sobre" className="about-showcase" aria-label="Quem sou eu">
         <div className="about-desktop" data-motion="reveal">
+          <PremiumBackground />
           <Image
             className="about-reference-image"
-            src="/imagens/sobre/quarta-dobra-hd.png"
+            src="/imagens/sobre/quarta-dobra-clean-hd.png"
             alt="André Cavalcanti apresenta sua atuação em palestras, educação corporativa, consultoria e mentoria, conselho e estratégia."
             width={5760}
             height={3240}
@@ -448,6 +454,7 @@ export default function Home() {
         </div>
 
         <div className="about-mobile">
+          <PremiumBackground />
           <div className="about-mobile__profile" data-motion="portrait">
             <Image
               src="/imagens/img02.png"
@@ -511,14 +518,7 @@ export default function Home() {
       {/* CONTATO */}
       <section id="contato" className="contact-showcase" aria-label="Vamos conversar">
         <div className="contact-artboard">
-          <Image
-            className="contact-filigree"
-            src="/imagens/solucoes/decoracao-fios.png"
-            alt=""
-            aria-hidden="true"
-            width={1200}
-            height={1200}
-          />
+          <PremiumBackground />
           <Image
             className="contact-wolf"
             src="/imagens/contato/lobo-pdf.png"
@@ -573,6 +573,7 @@ export default function Home() {
         </div>
 
         <div className="contact-mobile">
+          <PremiumBackground />
           <Image
             className="contact-mobile__wolf"
             src="/imagens/lobo.png"

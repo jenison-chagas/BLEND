@@ -9,7 +9,7 @@ main > section[id] {
 
 /* A short selected section fills the screen instead of exposing its neighbor.
    A longer section grows naturally, keeping its ending within the same fold. */
-main > :is(#inicio, #solucoes, #tese, #sobre, #contato):target {
+main > :is(#solucoes, #tese, #sobre, #contato):target {
   min-height: 100svh !important;
   max-height: none !important;
   height: auto !important;
@@ -34,3 +34,5 @@ main > :is(#solucoes, #tese, #sobre, #contato):target {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* INÍCIO keeps its original layout at every width, including when selected. */
