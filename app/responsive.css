@@ -632,6 +632,9 @@
 @media (min-width: 1600px) {
   #tese,
   #sobre {
+    /* Full fitting also applies below 800px of browser viewport height. */
+    --full-canvas: min(94vw, 1840px);
+    --full-gutter: clamp(48px, 4vw, 80px);
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -652,7 +655,9 @@
   }
 
   #sobre .about-desktop {
+    display: block;
     width: var(--full-about-width);
+    flex: 0 0 auto;
     margin-inline: auto;
   }
 }
