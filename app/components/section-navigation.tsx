@@ -17,10 +17,18 @@ export function SectionNavigation() {
       const current = ++version;
       const scroll = (smooth: boolean) => {
         if (disposed || current !== version) return;
+        const bounds = section.getBoundingClientRect();
+        const sectionTop = Math.max(0, window.scrollY + bounds.top);
+        const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+        // On short screens, keep the contact footer visible even if the content
+        // cannot fit in a single viewport. Other menu destinations keep their top.
+        const destination = id === "inicio" ? 0
+          : id === "contato" ? Math.max(sectionTop, window.scrollY + bounds.bottom - viewportHeight)
+          : sectionTop;
         window.scrollTo({
           left: window.scrollX,
           // The first fold includes the navigation header, above #inicio.
-          top: id === "inicio" ? 0 : Math.max(0, window.scrollY + section.getBoundingClientRect().top),
+          top: destination,
           behavior: smooth && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
             ? "smooth" : "instant",
         });

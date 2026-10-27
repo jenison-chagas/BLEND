@@ -297,9 +297,9 @@ export default function Home() {
             />
 
             <img
-              src="/imagens/img01.png"
-              width={1347}
-              height={1168}
+              src="/imagens/andre-biblioteca-sem-pulseira.png"
+              width={1329}
+              height={1183}
               alt="André Cavalcanti"
               className="relative z-10 block h-full w-full object-contain object-bottom lg:absolute lg:bottom-[1%] lg:right-[-2%] lg:h-[100%] lg:w-[108%]"
               style={{
@@ -336,7 +336,7 @@ export default function Home() {
         <div className="hero-marquee relative z-20 -mt-[2vh] bg-[#080808]/90">
           <div
             className="hero-marquee__viewport"
-            aria-label="Empresário, Educador, Conselheiro, Palestrante e Autor"
+            aria-label="Empreendedor, Educador, Conselheiro, Palestrante e Autor"
           >
             <div className="hero-marquee__track">
               {Array.from({ length: 4 }).map((_, groupIndex) => (
@@ -345,7 +345,7 @@ export default function Home() {
                   className="hero-marquee__group"
                   aria-hidden={groupIndex !== 0}
                 >
-                  <span>Empresário</span>
+                  <span>Empreendedor</span>
                   <span className="hero-marquee__separator">•</span>
                   <span>Educador</span>
                   <span className="hero-marquee__separator">•</span>

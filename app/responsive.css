@@ -690,3 +690,29 @@
     margin: 0;
   }
 }
+
+/* Fit the complete contact artboard, including the brand and legal footer. */
+@media (min-width: 768px) {
+  #contato {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100svh;
+  }
+
+  #contato .contact-artboard {
+    width: min(94vw, 1840px, calc((100svh - 32px) * 16 / 9));
+    max-width: 100%;
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+
+  #contato .contact-social-hotspots {
+    width: 100%;
+    max-width: none;
+  }
+
+  #contato .contact-legal--desktop {
+    right: 4.32%;
+  }
+}
