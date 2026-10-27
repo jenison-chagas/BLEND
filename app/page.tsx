@@ -568,7 +568,8 @@ export default function Home() {
 
           <div className="contact-legal contact-legal--desktop" data-motion="reveal" data-motion-delay="160">
             <p><DesktopLines lines={["@2026 André Cavalcanti. Todos os direitos reservados"]} /></p>
-            <p><DesktopLines lines={["Desnvolvido por Blend Creative Design Studio."]} /></p>
+            <p><DesktopLines lines={["Desenvolvido por Blend Creative Design Estúdio"]} /></p>
+            <p><DesktopLines lines={["Jenisson Chagas - Designer e Web designer"]} /></p>
           </div>
         </div>
 
@@ -615,7 +616,8 @@ export default function Home() {
             />
             <div className="contact-legal">
               <p><DesktopLines lines={["@2026 André Cavalcanti. Todos os direitos reservados"]} /></p>
-              <p><DesktopLines lines={["Desnvolvido por Blend Creative Design Studio."]} /></p>
+              <p><DesktopLines lines={["Desenvolvido por Blend Creative Design Estúdio"]} /></p>
+            <p><DesktopLines lines={["Jenisson Chagas - Designer e Web designer"]} /></p>
             </div>
           </footer>
         </div>
